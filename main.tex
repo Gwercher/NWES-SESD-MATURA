@@ -47,6 +47,8 @@ numbers = noendperiod
 
 \usepackage[export]{adjustbox}
 
+\usepackage{multirow}
+
 
 %-------------------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
@@ -119,10 +121,17 @@ numbers = noendperiod
 	\tableofcontents
 	\newpage
 %-------------------------------------------------------------------------------------------%
-% MAIN THESIS PART
+% MAIN PART
 	\pagenumbering{arabic} 
 	\setcounter{page}{1}
-	\part{part}
+	\part{4BHWII}
+	\include{chapters/netzwerktechnik}
+	
+	\include{chapters/osi_layer_1}
+	\include{chapters/osi_layer_2}
+	\include{chapters/osi_layer_3}
+	\include{chapters/osi_layer_4}
+	\include{chapters/osi_layer_567}
 	
 	\include{chapters/template_info}
 	
