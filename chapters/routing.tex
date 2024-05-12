@@ -1,0 +1,111 @@
+\chapter{Routing}
+Router muss entscheiden welcher Weg der 'beste' Weg ist. \\
+$\rightarrow$ bei welchen Interface (Netz) rausschicken = Routing
+
+Routing Tabelle wird durch ...
+\begin{itemize}
+	\item dynamisch (Routingprotkolle)
+	\item statische Einträge
+\end{itemize}
+... aufgebaut (in der Praxis meist aus Mischung).
+
+Router wählt Route mit am meisten Bits bei Ziel übereinstimmung (Vergleich von Route \& Destination IP).
+
+\textbf{1) Einträge in Routing Tabelle} \\
+\begin{itemize}
+	\item Direkt verbundene Netze: Aktive \& angeschlossene Netze am Router mit IP-Konfiguration $\rightarrow$ automatisch (Status Code: C, L)
+	\item Remote Netze: statisch oder dynamisch (vom Routingprotokoll abhängig) eingetragen (Status Code: S, R, O, E,...)
+	\item Default Route (gateway of last resort): Next Hop falls der Router keine passende Route findet, statisch oder dynamisch. \\ Route: 0.0.0.0 / 0 ... 0 Bits müssen übereinstimmen
+\end{itemize}
+
+\textbf{2) Eintrag in Cisco CLI}
+\begin{table}[H]
+	\begin{tabular}{cccccc}
+		R & 30.0.4.0/24 & [120/7] & via 10.0.3.2 & 00:13:29 & Serial 10/1/1 \\
+		Status & Ziel & AD/Metrik & IP (ausgehendes Interface) & Zeitstempel & Interface
+	\end{tabular}
+\end{table}
+
+\textbf{Status Code} \\
+\begin{tabbing}
+	C ... connected ~~~ \= Direkt verbundene Netzte \\
+	L ... local ~~~ \= IP vom Interface, lokale Route \\
+	S ... static ~~~ \= statisch eingegebene Route \\
+	R ... RIP ~~~ \= entsprechendes Routingprotokoll \\
+	O ... OSPF ~~~ \= entsprechendes Routingprotokoll \\
+	E ... EIGRP ~~~ \= entsprechendes Routingprotokoll
+\end{tabbing}
+
+\textbf{Ziel} \\
+IP-Adresse des Zielnetzes mit Präfix (nicht unbedingt Subnetzmaske). Es müssen die angegebene Anzahl von Bits (Präfix) mit Destination IP-Adresse übereinstimmen (damit Route in Frage kommt). Route mit am meisten übereinstimmenden Bits (von links). \\
+Problem: es wird keine Subnetzmaske der Destination IP mitgeschickt $\rightarrow$ normalerweise auch nicht bekannt.
+\begin{table}[H]
+	\begin{tabular}{ll}
+		\multicolumn{2}{l}{Dest IP: 172.16.0.10 (letztes Oktett: 00001010)} \\
+		\hline
+		1) 172.16.0.0 /16 & Bis Bit 16 übereinstimmend \\
+		2) 172.16.0.0 /24 & Bis Bit 24 übereinstimmend \\
+		3) 172.16.0.0 /26 & Bis Bit 26 übereinstimmend \\
+		4) 172.16.0.0 /30 & Bis Bit 29 nicht übereinstimmend \\
+		5) 172.17.0.0 /24 & am 2. Oktett stimmt es nicht überein
+	\end{tabular}
+\end{table}
+Router wählt 3. Variante (???). Dort stimmt die angegebene Anzahl an Bits (Präfix) überein
+
+\textbf{AD: Administrative Distanz} \\
+Router kann Route über mehrere Arten lernen (z.B. statisch, RIP, OSPF,...). AD gibt an wie 'vertrauenswürdig' eine Route ist. Router verwendet Route mit niedrigster AD, andere Routen sind Backups und werden vorerst nicht im Routing Table angezeigt.\\
+$\rightarrow$ wenn 'beste' Route ausfällt wird nächst beste verwendet
+
+Standard Werte bei Cisco Routern
+\begin{table}[H]
+	\begin{tabular}{rc}
+		& AD \\
+		\hline
+		Direkte Routen & 0 \\
+		Statische Routen & 1 \\
+		EIGRP & 90 \\
+		OSPF & 110 \\
+		RIP & 120 \\
+	\end{tabular}
+\end{table}
+
+\textbf{Metrik} \\
+Von einem Routingprotokoll kann der Router mehrere Routen zum gleichen Ziel lernen. Die Metrik gibt an, 'wie weit' das Ziel entfernt ist. Der Router verwendet die Route mit der geringsten Metrik. Falls eine Route ausfällt, wird auf Backup-Routen zurückgegriffen.
+
+\textbf{3) Statische Routen} \\
+Werden in kleineren Netzen mit geringen Veränderungen, bei speziellen Zielnetzen oder Router mit nur einen Nachbar (Stub-Network) verwendet. \\
+Problem: Statische Routen werden nicht automatisch aktualisiert und müssen händisch aktualisiert werden.
+
+\textbf{4) Dynamische Routingprotokolle} \\
+Je nach Ablauf des Routingprotokolls unterscheidet man unterschiedliche Kategorien.
+\begin{itemize}
+	\item Pfadvektorprotokolle \\
+	Diese Protokolle speichern den Pfad/Weg zum Ziel. Sie sind besonders effizient gegen Routing-Schleifen und eignen sich dadurch zum Routen von autonomen Systemen. \\
+	Beispiel: BGP (Border Gateway Protocol), Metrik: Anzahl der autonomen Systemen bis zum Ziel (Zusatzinformation IGP-Metrik: wie lange dauert es durch ein autonomes System)
+	\item Distanzvektorprotokolle \\
+	Diese Protokolle speichern nur die Distanz zum Ziel \\
+	Beispiel: RIP (Routing Information Protocol), Metrik: Anzahl der Hops \\
+	EIGRP (Enhanced Interior Gateway Routing Protocol), Metrik: Bandbreits, Auslastung, Delay, Zuverlässigkeit \\
+	EIGRP kennt die ganze Topologie im System, speichert diese aber nicht direkt ab.
+	\item Link-State-Protokolle \\
+	Diese Protokolle kennen die ganze Topologie im System. Daraus berechnet sich jeder Router die besten Routen zu allen Zielen. \\
+	Beispiel: OSPF (Open Shortes Path First), Metrik: Bandbreite
+\end{itemize}
+
+\textbf{5) Algorithmen zur Bestimmung des kürzesten Weges} \\
+\begin{itemize}
+	\item Bellman Ford (RIP)
+	\item Dijkstra (OSPF)
+	\item DUAL (EIGRP)
+\end{itemize}
+
+\textbf{Dijkstra Algorithmus} \\
+Ablauf: \\
+1. Startknoten mit 0 markieren, alle anderen mi $\infty$: 'Distanz' und 'besucht' merken
+2. Solange es unbesuchte Knoten gibt:
+\begin{itemize}
+	\item Jenen Knoten mit der kürzesten Distanz wählen
+	\item Als besucht markieren
+	\item Für alle unbesuchten Knoten die Distanz berechnen
+	\item Falls der Wert kleiner ist, als der aktuelle, diese speichern
+\end{itemize} 
