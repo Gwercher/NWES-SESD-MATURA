@@ -22,6 +22,7 @@ numbers = noendperiod
 \usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsmath} % for math
+\usepackage{amssymb}
 \usepackage{graphicx} % for images
 \usepackage{subcaption} % for images
 \usepackage{float}
@@ -39,7 +40,7 @@ numbers = noendperiod
 \renewcommand{\lstlistingname}{Quellcode} % change 'Listing' to 'Quellcode'
 \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
 
-\usepackage{pdfpages} % include excel pdf
+%\usepackage{pdfpages} % include excel pdf
 
 \usepackage{tocloft}
 \setlength\cftbeforechapskip{5pt}
@@ -50,6 +51,8 @@ numbers = noendperiod
 \usepackage{multirow}
 
 \usepackage{marvosym}
+
+\usepackage{circuitikz}
 %-------------------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
 \usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
@@ -117,13 +120,20 @@ numbers = noendperiod
 	
 	\normalFooter 
 	\pagenumbering{roman} \setcounter{page}{1}
-	
 	\tableofcontents
 	\newpage
 %-------------------------------------------------------------------------------------------%
 % MAIN PART
 	\pagenumbering{arabic} 
 	\setcounter{page}{1}
+	
+	\part{2BHWII}
+	\include{chapters/digitaltech}
+	
+	\part{3BHWII}
+	\include{chapters/bussysteme}
+	\include{chapters/finitestate}
+		
 	\part{4BHWII}
 	\include{chapters/netzwerktechnik}
 	

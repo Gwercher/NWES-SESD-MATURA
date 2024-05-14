@@ -1,0 +1,143 @@
+\chapter{Digitaltechnik}
+\textbf{Digital:} kann nur bestimmte (diskrete) Werte annehmen (z.B. 0/1, TRUE/FALSE; Digitaluhr 08:35 $\rightarrow$ 08:26 $\rightarrow$ 08:37)
+
+\textbf{Analog:} kann beliebige (kontinuierliche) Werte annehmen (Temperaturmesswerte: 38.089°C, 40.05°C).
+
+Aufgabe: Schaltung, mit zwei Schaltern, mit denen man Licht aus- und einschalten kann
+\begin{center}	
+\begin{tabular}{cc}
+	\begin{circuitikz}[scale=1]
+		\draw
+		(1,0) node[spdt] (Sw1) {}		
+		(2,0) node[spdt, xscale=-1] (Sw2) {}
+		
+		(Sw1.out 1) to (Sw2.out 1)
+		(Sw1.out 2) to (Sw2.out 2)
+		
+		(0,0) to (Sw1.in)
+		(Sw2.in) to (3,0)
+		to (3,-1)
+		to[lamp] (0,-1)
+		
+		(0,0) to[battery1] (0,-1)
+		;
+	\end{circuitikz}
+	&
+	\begin{tabular}{c|c||c}
+		S1 & S2 & L \\
+		\hline
+		0 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		1 & 1 & 0 \\
+	\end{tabular}
+\end{tabular}
+\end{center}	
+
+\textbf{Allgemein}
+\begin{itemize}
+	\item mehrere Eingänge (a, b, c, d,...) (Schalter)
+	\item einen Ausgang (x) (Lampe)
+\end{itemize}
+
+\section{Boolsche Algebra}
+\textbf{Grundrechenwege} \\
+\begin{tabular}{ccc}
+	$\bullet$ UND (konjunktion) & \begin{tabular}{c|c||c}
+		a & b & a $\land$ b \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 0 \\
+		1 & 0 & 0 \\
+		1 & 1 & 1 \\
+	\end{tabular} & circuit \\
+
+	& & \\
+	
+	$\bullet$ ODER (disjunktion) & \begin{tabular}{c|c||c}
+		a & b & a $\lor$ b \\
+		\hline
+		0 & 0 & 0 \\
+		0 & 1 & 1 \\
+		1 & 0 & 1 \\
+		1 & 1 & 0 \\
+	\end{tabular} & circuit \\
+
+	& & \\
+
+	$\bullet$ NICHT (disjunktion) & \begin{tabular}{c||c}
+		a & $\lnot$a oder $\overline{\text{a}}$ \\
+		\hline
+		0 & 1  \\
+		0 & 0  \\
+	\end{tabular} & \\
+\end{tabular}
+
+
+$\text{x}_1$ = a $\land$ (b $\lor$ c) \\
+$\text{z}^{\text{Anzahl der Variablen}}$ = $\text{2}^\text{3}$ = 8
+
+\begin{tabular}{c|c|c||c||c}
+	a & b & c & b $\lor$ c & $\text{x}_1$ \\
+	\hline
+	0 & 0 & 0 & 0 & 0\\
+	1 & 0 & 0 & 0 & 0\\
+	0 & 1 & 1 & 1 & 0\\
+	1 & 1 & 1 & 1 & 1\\
+	0 & 0 & 1 & 1 & 0\\
+	1 & 0 & 1 & 1 & 1\\
+	0 & 1 & 1 & 1 & 0\\
+	1 & 1 & 1 & 1 & 1\\
+\end{tabular}
+
+$\text{x}_2$ = a $\land$ b $\land$ c $\land$ $\overline{\text{a}}$ \\
+
+\begin{tabular}{c|c|c|c||c||c||c}
+	a & b & c & $\land$a & a $\land$ b & a $\land$ b $\land$ c & $\text{x}_2$ \\
+	\hline
+	0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+	1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+	1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+	1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+	0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+	1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+\end{tabular}
+
+$\text{x}_3$ = a $\land$ b $\land$ ($\overline{\text{a}}$ $\lor$ c) \\
+
+\begin{tabular}{c|c|c|c||c||c||c}
+	a & b & c & $\overline{\text{a}}$ & (a $\lor$ c) & a $\land$ b & $\text{x}_3$ \\
+	\hline
+	0 & 0 & 0 & 1 & 1 & 0 & 0 \\
+	1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 1 & 1 & 0 & 0 \\
+	1 & 1 & 0 & 0 & 0 & 1 & 0 \\
+	0 & 0 & 1 & 1 & 1 & 0 & 0 \\
+	1 & 0 & 1 & 0 & 1 & 0 & 0 \\
+	0 & 1 & 1 & 1 & 1 & 0 & 0 \\
+	1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+\end{tabular} \\
+$\text{x}_3$ = a $\land$ b $\land$ c 
+
+\textbf{Rechenregeln} \\
+\begin{itemize}
+	\item Vorrangsregeln\\
+	$\lnot$ \textgreater $\land$ \textgreater $\lor$
+	\item Kommutativgesetz \\
+	a $\land$ b = b $\land$ a \\
+	a $\lor$ b = b $\lor$ a 
+	\item Assoziativgesetz \\
+	a $\land$ (b $\land$ c) =(a $\land$ b) $\land$ c \\
+	a $\lor$ (b $\lor$ c) =(a $\lor$ b) $\lor$ c
+	\item Distributivgesetz \\
+	a $\land$ (b $\lor$ c) = (a $\land$ b) $\lor$ (a $\land$ c) \\
+	a $\lor$ (b $\land$ c) = (a $\lor$ b) $\land$ (a $\lor$ c)
+	\item De Morgan'sche Gesetz \\
+	$\overline{\text{a}\land\text{b}}$ = $\overline{\text{a}} \lor \overline{\text{b}}$ \\
+	$\overline{\text{a}\lor\text{b}}$ = $\overline{\text{a}} \land \overline{\text{b}}$ 
+\end{itemize}
+
+
+
