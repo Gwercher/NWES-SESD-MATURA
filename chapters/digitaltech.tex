@@ -139,5 +139,133 @@ $\text{x}_3$ = a $\land$ b $\land$ c
 	$\overline{\text{a}\lor\text{b}}$ = $\overline{\text{a}} \land \overline{\text{b}}$ 
 \end{itemize}
 
+\begin{tabular}{c|c|c|c||c||c||c}
+	a & b & $\lnot$a & $\lnot$b & a $\land$ b & $\overline{\text{a}\land\text{b}}$ & $\lnot$a $\lor$ $\lnot$b \\
+	\hline
+	0 & 0 & 1 & 1 & 0 & 1 & 1 \\
+	1 & 0 & 0 & 1 & 0 & 1 & 1 \\
+	0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+	1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+\end{tabular} \\
+
+\textbf{Weitere Gesetzte} \\
+\begin{tabular}{p{\dimexpr 0.33\linewidth-2\tabcolsep} p{\dimexpr 0.33\linewidth-2\tabcolsep} p{\dimexpr 0.33\linewidth-2\tabcolsep}} 
+	a $\land$ a = a & a $\land$ 1 = a & a $\land$ 0 = 0 \\
+	a $\lor$ a = a & a $\lor$ 1 = 1 & a $\land$ 0 = a \\
+	a $\land$ $\overline{\text{a}}$ = 0 & a $\lor$ $\overline{\text{a}}$ = 1 & \\
+	$\overline{\overline{\text{a}}}$ = a & & \\
+\end{tabular} 
+
+\textbf{Standartschaltungen} \\
+\begin{tabular}{ccl}
+	$\bullet$ NAND 
+	&
+	\begin{tabular}{c|c||c}
+		a & b & $\overline{\text{a} \land \text{b}}$ \\
+		\hline
+		0 & 0 & 1 \\
+		1 & 0 & 1 \\
+		0 & 1 & 1 \\
+		1 & 1 & 0 \\
+	\end{tabular} 
+	& \\
+	
+	& & \\
+	
+	$\bullet$ NOR 
+	&
+	\begin{tabular}{c|c||c}
+		a & b & $\overline{\text{a} \lor \text{b}}$ \\
+		\hline
+		0 & 0 & 1 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		1 & 1 & 0 \\
+	\end{tabular} 
+	& \\
+	
+	& & \\
+
+	$\bullet$ Implikation 
+	&
+	\begin{tabular}{c|c||c}
+		a & b & a $\rightarrow$ b \\
+		\hline
+		0 & 0 & 1 \\
+		1 & 0 & 1 \\
+		0 & 1 & 0 \\
+		1 & 1 & 1 \\
+	\end{tabular} 
+	& a $\rightarrow$ b = $\overline{\text{a}} \lor \text{b}$ \\
+	
+		& & \\
+	
+	$\bullet$ Äquivalenz 
+	&
+	\begin{tabular}{c|c||c}
+		a & b & a $\leftrightarrow$ b \\
+		\hline
+		0 & 0 & 1 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		1 & 1 & 1 \\
+	\end{tabular} 
+	& a $\leftrightarrow$ b = a $\rightarrow$ b $\land$ a $\rightarrow$ b = ($\overline{\text{a}}$ $\lor$ b) $\land$ ($\overline{\text{b}}$ $\lor$ a)\\
+	
+		& & \\
+	
+	$\bullet$ XOR 
+	&
+	\begin{tabular}{c|c||c}
+		a & b & a $\oplus$ b \\
+		\hline
+		0 & 0 & 0 \\
+		1 & 0 & 1 \\
+		0 & 1 & 1 \\
+		1 & 1 & 0 \\
+	\end{tabular} 
+	& a $\oplus$ b = a $\Leftrightarrow$ b \\
+	
+\end{tabular}
+
+rechnungen bsps
+
+\textbf{Normalformen} \\
+\begin{tabular}{cc|c||c}
+	  &a & b & x \\
+	\hline
+	1) & \text{\textcolor{red}{0}} & \text{\textcolor{red}{0}} & \text{\textcolor{red}{1}} \\
+	2) & \text{\textcolor{OliveGreen}{1}} & \text{\textcolor{OliveGreen}{0}} & \text{\textcolor{OliveGreen}{0}} \\
+	3) & \text{\textcolor{OliveGreen}{0}} & \text{\textcolor{OliveGreen}{1}} & \text{\textcolor{OliveGreen}{0}} \\
+	4) & \text{\textcolor{red}{1}} & \text{\textcolor{red}{1}} & \text{\textcolor{red}{1}} \\
+\end{tabular} \\
+$\text{x}_{\text{\textcolor{red}{DNF}}}$ = ($\overline{\text{a}}$ $\land$ $\overline{\text{b}}$) $\lor$ (a $\land$ b) \\
+\text{\textcolor{white}{-------------}} 1) \text{\textcolor{white}{----------}} 2)
+
+$\text{x}_{\text{\textcolor{OliveGreen}{KNF}}}$ = (a $\lor$ $\overline{\text{b}}$) $\land$ ($\overline{\text{a}}$ $\lor$ b) \\
+\text{\textcolor{white}{-------------}} 3) \text{\textcolor{white}{----------}} 4)
+
+Aus einer Wahrheitstabelle mit beliebig vielen Eingängen und einem Ausgang kann immer eine Schaltung in DNF oder KNF angegeben werden.
+\begin{itemize}
+	\item DNF = Disjunktiv Normal Form (oder $\lor$)
+	\item KNF = Konjunktiv Normal Form (oder $\land$)
+\end{itemize}
+Bei der DNF suchen wir jene Ausgänge, die '1' sind und verknüpfen die Eingänge mit einem '$\land$' wenn der Eingang '0' ist und verneinen sie. \\
+Bei der KNF suchen wir jene Ausgänge die '0' sind und verknüpfen die Eingänge mit einem '$\lor$' wenn der Eingang '1' ist und verneinen sie.
+
+wasserstand bsp...
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
