@@ -126,3 +126,169 @@ Beispiel: DA-Wandler 8 Bit, $\text{U}_0$ = 10V \\
 
 \section{Analog-Digital Wandler}
 Der Analog-Digital Wandler muss beliebige Werte (analoges Signal) in eine Binärzahl übersetzen.
+
+Bsp:
+$\text{U}_0$ = 5V, 2 Bit ($2^{2}$ = 4 Zahlen: 00, 01, 10, 11) \\
+$\Delta$U = $\dfrac{5}{4}$ = 1,25 V
+
+\begin{center}
+	\begin{tikzpicture}[scale=2,% for curly brackets
+		> = Straight Barb,
+		BC/.style args = {#1/#2}{
+			decorate,
+			decoration={calligraphic brace, amplitude=6pt,
+				pre =moveto, pre  length=1pt,
+				post=moveto, post length=1pt,
+				raise=#1,
+				#2,
+			},
+			ultra thick},
+		]
+		\draw[-latex] (0,0) -- (5.5,0); %edit here for the axis
+		\foreach \x in {0,1.25,2.5,3.75,5} % edit here for the vertical lines
+		\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+		
+		\draw[BC=4pt/] (0,0) -- node[above=7pt] {00} (1.25,0); 
+		\draw[BC=4pt/] (1.25,0) -- node[above=7pt] {01} (2.5,0); 
+		\draw[BC=4pt/] (2.5,0) -- node[above=7pt] {10} (3.75,0); 
+		\draw[BC=4pt/] (3.75,0) -- node[above=7pt] {11} (5,0); 
+		
+		\draw (0,0) node[below=3pt]{0};
+		\draw (1.25,0) node[below=3pt]{1,25};
+		\draw (2.5,0) node[below=3pt]{2,5};
+		\draw (3.75,0) node[below=3pt]{3,75};
+		\draw (5,0) node[below=3pt]{5};
+	\end{tikzpicture}
+\end{center}
+
+Erste Schritt = $\dfrac{\Delta\text{U}}{2}$
+
+\begin{center}
+	\begin{tikzpicture}[scale=2,% for curly brackets
+		> = Straight Barb,
+		BC/.style args = {#1/#2}{
+			decorate,
+			decoration={calligraphic brace, amplitude=6pt,
+				pre =moveto, pre  length=1pt,
+				post=moveto, post length=1pt,
+				raise=#1,
+				#2,
+			},
+			ultra thick},
+		]
+		\draw[-latex] (0,0) -- (5.5,0); %edit here for the axis
+		\foreach \x in {0,0.625,1.875,3.125,5} % edit here for the vertical lines
+		\draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+		
+		\draw[BC=4pt/] (0,0) -- node[above=7pt] {00} (0.625,0); 
+		\draw[BC=4pt/] (0.625,0) -- node[above=7pt] {01} (1.875,0); 
+		\draw[BC=4pt/] (1.875,0) -- node[above=7pt] {10} (3.125,0); 
+		\draw[BC=4pt/] (3.125,0) -- node[above=7pt] {11} (5,0); 
+		
+		\draw (0,0) node[below=3pt]{0};
+		\draw (0.625,0) node[below=3pt]{0,625};
+		\draw (1.875,0) node[below=3pt]{1,875};
+		\draw (3.125,0) node[below=3pt]{3,125};
+		\draw (5,0) node[below=3pt]{5};
+	\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+	\def\x{1.25}
+	\begin{axis}[
+		axis lines = left,
+		xlabel = U,
+  		xtick={0,\x,\x*2,\x*3,\x*4},
+		ylabel = D,
+  		ytick={0,1,2,3},
+  		yticklabels={00,01,10,11},
+  		ymax=3.5,
+  		xmax=5.5
+		]
+
+		\addplot [
+		domain=0:5, 
+		samples=10, 
+		color=blue,
+		]
+		{0.6*x};
+
+		\addplot[color=gray,mark=none] coordinates { (0,0) (\x,0)};
+		
+  		\addplot[color=gray,mark=none] coordinates { (\x,0) (\x,1)};
+  		\addplot[color=gray,mark=none] coordinates { (\x,1) (\x*2,1)};
+		
+		\addplot[color=gray,mark=none] coordinates { (\x*2,1) (\x*2,2)};
+		\addplot[color=gray,mark=none] coordinates { (\x*2,2) (\x*3,2)};
+
+		\addplot[color=gray,mark=none] coordinates { (\x*3,2) (\x*3,3)};
+		\addplot[color=gray,mark=none] coordinates { (\x*3,3) (\x*4,3)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+Fehler: fast $\Delta$U (?)
+
+\begin{center}
+\begin{tikzpicture}
+	\def\x{0.625}
+	\begin{axis}[
+		axis lines = left,
+		xlabel = U,
+    	xticklabel style={/pgf/number format/.cd,fixed,precision=3},
+		xtick={0, \x, \x*3, \x*5, \x*8},
+		ylabel = D,
+		ytick={0,1,2,3},
+		yticklabels={00,01,10,11},
+		ymax=3.5,
+		xmax=5.5
+		]
+		
+		\addplot [
+		domain=0:5, 
+		samples=10, 
+		color=blue,
+		]
+		{0.8*x};
+		
+		\addplot[color=gray,mark=none] coordinates { (0,0) (\x,0)};
+		
+		\addplot[color=gray,mark=none] coordinates { (\x,0) (\x,1)};
+		\addplot[color=gray,mark=none] coordinates { (\x,1) (\x*3,1)};
+		
+		\addplot[color=gray,mark=none] coordinates { (\x*3,1) (\x*3,2)};
+		\addplot[color=gray,mark=none] coordinates { (\x*3,2) (\x*5,2)};
+		
+		\addplot[color=gray,mark=none] coordinates { (\x*5,2) (\x*5,3)};
+		\addplot[color=gray,mark=none] coordinates { (\x*5,3) (\x*8,3)};
+	\end{axis}
+\end{tikzpicture}
+\end{center}
+Fehler: $\dfrac{\delta\text{U}}{2}$, außer am Ende
+
+\subsection{Verfahren und Schaltungen}
+\begin{itemize}
+	\item Parallelverfahren
+	\item Wägeverfahren
+	\item Zählerverfahren
+\end{itemize}
+alle Schaltungen (10 V $\rightarrow$ 3 Bit) \\
+Alle benötigen zumindest einen Komparator
+
+\begin{circuitikz}
+	\draw (0,0) node[op amp, yscale=-1](comp){}
+		(comp.-) -- ++(-0.5,0) node[above]{$\text{U}_2$}
+		(comp.+) -- ++(-0.5,0) node[above]{$\text{U}_1$}
+		(comp.out) -- ++(0.5,0) node[above]{$\text{U}_{\text{aus}}$};
+\end{circuitikz}
+
+$\text{U}_{\text{aus}}$ = 
+\begin{math}
+	\left\{
+	\begin{array}{l}
+		\text{HIGH (1)} \quad \text{U}_\text{1} \ge \text{U}_\text{2} \\
+		\text{LOW (0)} \quad \text{U}_\text{1} \le \text{U}_\text{2}
+	\end{array}
+	\right.
+\end{math}
+

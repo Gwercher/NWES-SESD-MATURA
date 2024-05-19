@@ -55,7 +55,12 @@ numbers = noendperiod
 \usepackage{circuitikz}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta, 
+	decorations.pathreplacing,%
+	calligraphy,% had to be after decorations.pathreplacing
+	calc}
+
+\usepackage{pgfplots} 
 
 %-------------------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
