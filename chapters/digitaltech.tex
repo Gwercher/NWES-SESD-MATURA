@@ -255,16 +255,129 @@ Bei der KNF suchen wir jene Ausgänge die '0' sind und verknüpfen die Eingänge
 
 wasserstand bsp...
 
+\subsection{KV-Diagramme}
+KV ... Karnaugh-Veitch \\
 
+Pumpe x: 
+\begin{tabular}{c|c|c|c|c}
+	& \makecell{b = 0\\c = 0} & \makecell{b = 0\\c = 1} & \makecell{b = 1\\c = 1} & \makecell{b = 1\\c = 0} \\
+	\hline
+	a = 0 & 0 & 1 & 1 & 1 \\
+	\hline
+	a = 1 & 0 & 1 & 1 & 1 \\
+\end{tabular} \\
+x = c $\lor$ b \\
 
+Pumpe y: 
+\begin{tabular}{c|c|c|c|c}
+	& \makecell{b = 0\\c = 0} & \makecell{b = 0\\c = 1} & \makecell{b = 1\\c = 1} & \makecell{b = 1\\c = 0} \\
+	\hline
+	a = 0 & 0 & 1 & 1 & 1 \\
+	\hline
+	a = 1 & 1 & 1 & 1 & 0 \\
+\end{tabular} \\
+y = c $\lor$ (a $\land$ $\overline{\text{b}}$) $\lor$ ($\overline{\text{a}}$ $\land$ b) \\
 
+Pumpe z: 
+\begin{tabular}{c|c|c|c|c}
+	& \makecell{b = 0\\c = 0} & \makecell{b = 0\\c = 1} & \makecell{b = 1\\c = 1} & \makecell{b = 1\\c = 0} \\
+	\hline
+	a = 0 & 0 & 1 & 1 & 1 \\
+	\hline
+	a = 1 & 0 & 1 & 0 & 0 \\
+\end{tabular} \\
+z = ($\overline{\text{b}}$ $\land$ c) $\lor$ (b $\land$ $\overline{\text{a}}$) \\
 
+Schaltplan: \\
+%\begin{center}
+%  \begin{circuitikz}
+%		\ctikzset{logic ports = european}
+%		\draw
+%		(2,3) node[and port] (and1) {}
+%		(2,2) node[and port] (and2) {}
+%		(2,1) node[or port] (or1) {}
+%		(2,0) node[and port] (and3) {}
+%		
+%		(5,2.5) node[or port] (or2) {}
+%		(6,0) node[or port] (or3) {}
+%				
+%		(and1.in 1) node[left=.5cm](a0) {a}
+%		(a0) -| (and1.in 1)
+%				
+%		(or1.in 1) node[left=.5cm](b0) {b}
+%		(b0) -| (or1.in 1)
+%		
+%		(or1.in 2) node[left=.5cm](c0) {c}
+%		(c0) -| (or1.in 2)
+%		
+%		(and1.out) -- ++(0.5,0) coordinate (And1out)
+%		(or3.in 1) -- ++ (-0.5,0) -| (And1out)
+%		(And1out) -| (or2.in 1)
+%
+%		(and2.out) -| (or2.in 2)
+%
+%		(and1.in 2) -- ++ (-0.25,0) coordinate (And1in2) 
+%		(and2.in 1) -- ++ (-0.25,0) coordinate (And2in1)
+%		(And2in1) -| (And1in2)
+%		
+%		(and3.in 1) -- ++(-0.25,0) coordinate (And3in1)
+%		(And2in1) -| (And3in1)
+%		
+%		(or1.out) -- ++(2,0) node[right=.1cm]{x}
+%		
+%		(or1.in 2) -| (and2.in 2)
+%		
+%		;
+%		% TODO: put o for NOT to some logic gates
+%	\end{circuitikz}
+%\end{center}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/wasserschaltung.jpeg}
+	\caption{Wasserpumpe Schaltung}
+\end{figure}
 
+\begin{tabular}{c|c|c||c|c}
+	a & b & c & x & y \\
+	\hline
+	0 & 0 & 0 & 1 & 0 \\
+	0 & 0 & 1 & 0 & 1 \\
+	0 & 1 & 0 & 1 & 0 \\
+	0 & 1 & 1 & 0 & 0 \\
+	1 & 0 & 0 & 0 & 1 \\
+	1 & 0 & 1 & 0 & 0 \\
+	1 & 1 & 0 & 1 & 0 \\
+	1 & 1 & 1 & 1 & 0 \\
+\end{tabular}
 
+$\text{x}_{\text{KNF}}$ = (a $\lor$ b $\lor$ $\overline{\text{c}}$) $\land$ (a $\lor$ $\overline{\text{b}}$ $\lor$ $\overline{\text{c}}$) $\land$ ($\overline{\text{a}}$ $\lor$ b $\lor$ c) $\land$ ($\overline{\text{a}}$ $\lor$ b $\lor$ $\overline{\text{c}}$) \\
+$\text{x}_{\text{DNF}}$ = ($\overline{\text{a}}$ $\land$ $\overline{\text{b}}$ $\land$ $\overline{\text{c}}$) $\lor$ ($\overline{\text{a}}$ $\land$ b $\land$ $\overline{\text{c}}$) $\lor$ (a $\land$ b $\land$ $\overline{\text{c}}$) $\lor$ (a $\land$ b $\land$ c) \\
 
+$\text{y}_{\text{KNF}}$ = (a $\lor$ b $\lor$ c) $\land$ (a $\lor$ $\overline{\text{b}}$ $\lor$ c) $\land$ (a $\lor$ $\overline{\text{b}}$ $\lor$ $\overline{\text{c}}$) $\land$ ($\overline{\text{a}}$ $\lor$ b $\lor$ $\overline{\text{c}}$) $\land$ ($\overline{\text{a}}$ $\lor$ $\overline{\text{b}}$ $\lor$ $\overline{\text{c}}$) \\
+$\text{y}_{\text{DNF}}$ = ($\overline{\text{a}}$ $\land$ $\overline{\text{b}}$ $\land$ c) $\lor$ (a $\land$ $\overline{\text{b}}$ $\land$ $\overline{\text{c}}$) \\
 
+\begin{tabular}{c|c|c|c|c}
+	& \makecell{b = 0\\c = 0} & \makecell{b = 0\\c = 1} & \makecell{b = 1\\c = 1} & \makecell{b = 1\\c = 0} \\
+	\hline
+	a = 0 & 100 & 001 & 011 & 010 \\
+	\hline
+	a = 1 & 100 & 101 & 111 & 110 \\
+\end{tabular}
 
+(a $\land$ b) $\lor$ (a $\land$ b) \\
+
+\begin{tabular}{c|c|c|c|c}
+	x & \makecell{b = 0\\c = 0} & \makecell{b = 0\\c = 1} & \makecell{b = 1\\c = 1} & \makecell{b = 1\\c = 0} \\
+	\hline
+	a = 0 & 1 & 0 & 1 & 1 \\
+	\hline
+	a = 1 & 1 & 0 & 0 & 1 \\
+\end{tabular}
+
+x = $\overline{\text{c}}$ $\lor$ ($\overline{\text{a}}$ $\land$ b)
+
+\subsection{KV-Diagramme mit 'Don't Care'}
 
 
 

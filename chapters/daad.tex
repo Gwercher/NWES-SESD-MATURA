@@ -264,7 +264,7 @@ Fehler: fast $\Delta$U (?)
 	\end{axis}
 \end{tikzpicture}
 \end{center}
-Fehler: $\dfrac{\delta\text{U}}{2}$, außer am Ende
+Fehler: $\dfrac{\Delta\text{U}}{2}$, außer am Ende
 
 \subsection{Verfahren und Schaltungen}
 \begin{itemize}
@@ -285,10 +285,181 @@ Alle benötigen zumindest einen Komparator
 $\text{U}_{\text{aus}}$ = 
 \begin{math}
 	\left\{
-	\begin{array}{l}
+	\begin{array}{c}
 		\text{HIGH (1)} \quad \text{U}_\text{1} \ge \text{U}_\text{2} \\
 		\text{LOW (0)} \quad \text{U}_\text{1} \le \text{U}_\text{2}
 	\end{array}
-	\right.
+	\right\}
 \end{math}
+
+\subsection{Parallelverfahren}
+\begin{itemize}
+	\item Referenzspannung wird in Spannungsbereiche unterteilt
+	\item Es wird verglichen welche Spannung anliegt bzw. in welchen Spannungsbereich die angelegte Spannung fällt (Komparator)
+	\item Das Ergebnis der Komparatoren wird in die entsprechende Digitalzahl umgewandelt (Kodierlogik)
+\end{itemize}
+
+\begin{table}[H]
+	\begin{tabular}{l|l}
+		\multicolumn{1}{c}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
+		\hline
+		schnell & Hardware (sehr viele Bauteile) \\
+	\end{tabular}
+\end{table}
+
+
+\subsection{Wägeverfahren}
+\begin{enumerate}
+	\item Binärzahl halbieren (beim ersten Takt wird das erste Bit gesetzt) $\rightarrow$ wird auf 1 Gesetzt und mit der Spannung verglichen (Schieberegister)
+	\item Falls die angelegte Spannung größer ist, wird die 1 gespeichert, ansonsten wird eine 0 gespeichert (Flipflops)
+	\item Anschließend dasselbe Vorgehen für die nächsten Bits
+\end{enumerate}
+
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	\multicolumn{6}{|c|}{\textbf{Schieberegister}} \\
+	\hline
+	\textbf{11011} & 0 & 0 & 0 & 0 & 0 \\
+	\hline
+	\textbf{1. Takt} & 1 & 0 & 0 & 0 & 0 \\
+	\hline
+	\textbf{2. Takt} & 1 & 1 & 0 & 0 & 0 \\
+	\hline
+	\textbf{3. Takt} & 0 & 1 & 1 & 0 & 0 \\
+	\hline
+	\textbf{4. Takt} & 1 & 0 & 1 & 1 & 0 \\
+	\hline
+	\textbf{5. Takt} & 1 & 1 & 0 & 1 & 1 \\
+	\hline
+\end{tabular}
+
+\begin{center}
+	\begin{tikzpicture}
+					
+		\begin{axis}[
+			axis y line* = right,
+			axis x line = none,
+			xticklabel style={/pgf/number format/.cd,fixed,precision=3},
+			axis line style={draw=none},
+			tick style={draw=none},
+			ytick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+			yticklabels={, , , , 5V, , 7.5V $\text{U}_\text{x}$, , , 10V $\text{U}_\text{Ref}$},
+			ymax=9.5,
+			ymin=0,
+			xmax=5.5,
+			xmin=0,
+			]
+		\end{axis}
+	
+		\begin{axis}[
+			axis lines = left,
+			xlabel = Takt,
+			xticklabel style={/pgf/number format/.cd,fixed,precision=3},
+			ylabel = D,
+			ytick={0, 1, 2, 3, 4, 5, 6, 7},
+			yticklabels={000, 001, 010, 011, 100, 101, 110, 111},
+			ymax=9.5,
+			ymin=0,
+			xmax=5.5,
+			xmin=0,
+			]
+			\addplot[color=blue,mark=none,dashed,thick] coordinates { (0,6) (5.5,6)}; % 7.5V
+			\addplot[color=gray,mark=none,dashed] coordinates { (0,4) (5.5,4)}; % 5V
+			\addplot[color=gray,mark=none,dashed] coordinates { (0,9) (5.5,9)}; % 10V
+			
+			\addplot[color=black,mark=none] coordinates { (0,4) (2,4)};
+			\addplot[color=black,mark=none] coordinates { (2,4) (2,7)};
+			
+			\addplot[color=black,mark=none] coordinates { (2,7) (3,7)};
+			\addplot[color=black,mark=none] coordinates { (3,7) (3,4)};
+			
+			\addplot[color=black,mark=none] coordinates { (3,4) (4,4)};
+			\addplot[color=black,mark=none] coordinates { (4,4) (4,5)};
+			
+			\addplot[color=black,mark=none] coordinates { (4,5) (5,5)};
+			
+
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\begin{table}[H]
+	\begin{tabular}{l|l}
+		\multicolumn{1}{c}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
+		\hline
+		Hardware (im vgl. zum Parallelverfahren) & langsam (im vgl. zum Parallelverfahren) \\
+	\end{tabular}
+\end{table}
+
+\subsection{Zählerverfahren}
+\begin{center}
+	\begin{tikzpicture}
+		
+		\begin{axis}[
+			axis y line* = right,
+			axis x line = none,
+			xticklabel style={/pgf/number format/.cd,fixed,precision=3},
+			axis line style={draw=none},
+			tick style={draw=none},
+			ytick={0, 1, 2, 3, 4, 5, 5.5, 6, 7, 8, 9},
+			yticklabels={, , , , 5V, ,7V, 7.5V, , , 10V $\text{U}_\text{Ref}$},
+			ymax=9.5,
+			ymin=0,
+			xmax=6.5,
+			xmin=0,
+			]
+		\end{axis}
+		
+		\begin{axis}[
+			axis lines = left,
+			xlabel = Takt,
+			xticklabel style={/pgf/number format/.cd,fixed,precision=3},
+			ylabel = D,
+			ytick={0, 1, 2, 3, 4, 5, 6, 7},
+			yticklabels={000, 001, 010, 011, 100, 101, 110, 111},
+			ymax=9.5,
+			ymin=0,
+			xmax=6.5,
+			xmin=0,
+			]
+			\addplot[color=blue,mark=none,dashed,thick] coordinates { (0,6) (6.5,6)}; % 7.5V
+			\addplot[color=gray,mark=none,dashed,thick] coordinates { (0,5.5) (6.5,5.5)}; % 7V
+			\addplot[color=gray,mark=none,dashed] coordinates { (0,4) (6.5,4)}; % 5V
+			\addplot[color=gray,mark=none,dashed] coordinates { (0,9) (6.5,9)}; % 10V
+			
+			\addplot[color=black,mark=none] coordinates { (0,1) (1,1)};
+			\addplot[color=black,mark=none] coordinates { (1,1) (1,2)};
+			
+			\addplot[color=black,mark=none] coordinates { (1,2) (2,2)};
+			\addplot[color=black,mark=none] coordinates { (2,2) (2,3)};
+			
+			\addplot[color=black,mark=none] coordinates { (2,3) (3,3)};
+			\addplot[color=black,mark=none] coordinates { (3,3) (3,4)};
+			
+			\addplot[color=black,mark=none] coordinates { (3,4) (4,4)};
+			\addplot[color=black,mark=none] coordinates { (4,4) (4,5)};
+			
+			\addplot[color=black,mark=none] coordinates { (4,5) (5,5)};
+			\addplot[color=black,mark=none] coordinates { (5,5) (5,6)};
+			
+			\addplot[color=black,mark=none] coordinates { (5,6) (6,6)};
+	
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item Es wird nach oben gezählt (3 Bit Dualzähler)
+	\item Spannung wird erzeugt und verglichen bis die Spannung größer ist als die angelegte Spannung
+\end{itemize}
+
+\begin{table}[H]
+	\begin{tabular}{l|l}
+		\multicolumn{1}{c}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
+		\hline
+		Hardware (im vgl. zum Parallelverfahren) & langsam (im Gegensatz zum Parallelverfahren) \\
+	\end{tabular}
+\end{table}
+
+
 
