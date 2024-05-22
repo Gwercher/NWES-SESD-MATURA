@@ -1,5 +1,5 @@
 \subsection{Layer 4 (Transport)}
-\textbf{Aufgaben}
+\subsection*{Aufgaben}
 \begin{itemize}
 	\item Anwendungen identifizieren
 	\item Segmentierung
@@ -7,7 +7,7 @@
 	\item Kommunikation mit L3 \& L5
 \end{itemize}
 
-\textbf{Protkolle:} 
+\subsection*{Protkolle} 
 \begin{itemize}
 	\item TCP (Transmission Control Protocol)
 	\item UDP (User Datagram Protocol)
@@ -25,15 +25,14 @@
 		Flusskontrolle & 
 	\end{tabular}
 \end{table}
+\textbf{TCP:} HTTP (80)/HTTPS (443), SMTP (25), POP (110), IMAP (143), Telnet (23), SSH (22), FTP (20/21),... \\
+\textbf{UDP:} DNS (53), DHCP (67/68), VoIP, Streaming,...
 
-TCP: HTTP (80)/HTTPS (443), SMTP (25), POP (110), IMAP (143), Telnet (23), SSH (22), FTP (20/21),... \\
-UDP: DNS (53), DHCP (67/68), VoIP, Streaming,...
-
-\textbf{Ports} \\
+\subsection*{Ports}
 Der Port ist eine 16-Bit Zahl $\rightarrow$ $2^{16} = 65.536$ \\
 Der Port identifiziert die Anwendung, sowohl beim Server als auch beim Client.
 
-\textbf{Gruppe von Ports}
+\subsection*{Gruppe von Ports}
 \begin{table}[H]
 	\begin{tabular}{rc}
 		Well-Known-Ports & 0 - 1.023 \\
@@ -42,12 +41,11 @@ Der Port identifiziert die Anwendung, sowohl beim Server als auch beim Client.
 	\end{tabular}
 \end{table}
 
-\textbf{L4-Adressierung}
+\subsection*{L4-Adressierung}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/l4_addr.jpeg}
 	\caption{L4-Adressierung}
-	\label{fig:l4_addr}
 \end{figure}
 
 \begin{table}[H]
@@ -64,22 +62,22 @@ Der Port identifiziert die Anwendung, sowohl beim Server als auch beim Client.
 	\end{tabular}
 \end{table}
 
-\textbf{TCP} \\
-Verbindungsaufbau: Drei-Wege-Handshake
+\subsection*{TCP}
+\textbf{Verbindungsaufbau: Drei-Wege-Handshake}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/tcp_3wh.png}
 	\caption{TCP 3-Way-Handshake}
 \end{figure}
 
-Verbindungsabbau: Zwei-Wege-Handshake
+\textbf{Verbindungsabbau: Zwei-Wege-Handshake}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/tcp_2wh.png}
 	\caption{TCP 2-Way-Handshake}
 \end{figure}
 
-\textbf{Segmentierung} \\
+\subsection*{Segmentierung}
 Es wird eine SEQUENCENUMBER mitgeschickt. Diese gibt die Reihenfolge an. Der Client bestätigt die Segmente mit ACK-Segmente. Die ACK-NUMBER gibt an, welches Segment als nächstes kommen soll.
 \begin{figure}[H]
 	\centering
@@ -87,5 +85,5 @@ Es wird eine SEQUENCENUMBER mitgeschickt. Diese gibt die Reihenfolge an. Der Cli
 	\caption{Layer 4 Segmentierung}
 \end{figure}
 
-\textbf{Flow-Control} \\
+\subsection*{Flow-Control}
 Die Window Size gibt an wann das nächste ACK-Segment erwartet wird.

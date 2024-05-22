@@ -1,5 +1,5 @@
 \subsection{Layer 2 (Data Link)}
-\textbf{Aufgaben}
+\subsection*{Aufgaben}
 \begin{itemize}
 	\item lokale Adressierung
 	\item Fehlererkennung
@@ -7,33 +7,28 @@
 	\item Kommunikation mit Layer 3
 \end{itemize}
 
-\textbf{Geräte:} Netzwerkkarte, Switch, Bridge,...
-
+\textbf{Geräte:} Netzwerkkarte, Switch, Bridge,... \\
 \textbf{Standards:} Wifi (802.11), Ethernet (802.2, 802.3)
-
-\textbf{Topologie}
+\subsection*{Topologie}
 \begin{itemize}
 	\item Sterntopologie
 	\item Baumtopologie
 	\item Punkt-zu-Punkt
-	\item[] 
 \end{itemize}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{figures/topologiearten.png}
 	\caption{Baum- und Sterntopologie}
-	\label{fig:nettopo}
 \end{figure}
 
-\textbf{Ethernet}
+\subsection*{Ethernet}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/ethheader.png}
 	\caption{Ethernet Frame}
-	\label{fig:ethheader}
 \end{figure}
 
-\textbf{MAC-Adresse} \\
+\subsection*{MAC-Adresse}
 Die MAC-Adresse ist eine 48-Bit Zahl und wird in hexadecimal dargestellt.
 \begin{tabbing}
 	Bsp:\\
@@ -43,25 +38,24 @@ Die MAC-Adresse ist eine 48-Bit Zahl und wird in hexadecimal dargestellt.
 
 Jede Netzwerkkarte besitzt eine weltweit einzigartige (theoretisch) MAC-Adresse.
 
-\textbf{Type} \\
+\subsection*{Type}
 Kodierung für Layer 3 \\
 0x800 $\rightarrow$ IP \\
 0x806 $\rightarrow$ ARP 
 
-\textbf{Fehlerkennung} \\
+\subsection*{Fehlerkennung}
 Frame Checksum (CRC) \\
 Polynomdivision mit einem Polynom von Grad 32
 
-\textbf{Funktion eines Switches} \\
+\subsection*{Funktion eines Switches}
 Der Switch baut mit der Source-MAC seine MAC-Tabelle auf. Dort steht zu jeder MAC-Adresse der passende Port. Falls die MAC-Adresse schon eingetragen ist, wird ein Timer aktualisiert. Sollte es noch keinen Eintrag geben wird er hinzugefügt und bleibt dort eine gewisse Zeit (5 Minuten) bevor er gelöscht wird. Der Switch vergleicht die Destination-MAC mit seiner MAC-Tabelle. Falls der Switch keinen Eintrag findet sendet er an alle Ports (Flooding, Unknown Unicast). Sonst sendet er an den Port, wo er den Frame bekommen hat. \\
 Layer 2 Broadcast Adresse: FF:FF:FF:FF:FF:FF
 
-\textbf{L2, L3 Adressierung}
+\subsection*{L2, L3 Adressierung}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/l2l3add.jpeg}
 	\caption{Layer 2 \& 3 Adressierung}
-	\label{fig:l2l3add}
 \end{figure}
 
 \begin{table}[H]
@@ -75,32 +69,31 @@ Layer 2 Broadcast Adresse: FF:FF:FF:FF:FF:FF
 	\end{tabular}
 \end{table}
 
-\textbf{ARP (Address Resolution Protocol)} \\
+\subsection*{ARP (Address Resolution Protocol)}
 Nutzt ein Host um zu einer gegebenen IP-Adresse die passende MAC-Adresse zu finden
 
-\textbf{ARP-Request (Broadcast)} \\
+\subsection*{ARP-Request (Broadcast)}
 Source MAC: eigene MAC-Adresse \\
 Destination MAC: FF-FF-FF-FF-FF-FF \\
 Type: 0x806
 Danach ARP-Header (IP, MAC, Protokoll)
 
-\textbf{ARP-Reply}
+\subsection*{ARP-Reply}
 Unicast (auch als Broadcast möglich) \\
 Source MAC: eigene MAC-Adresse (gesucht) \\
 Destination MAC: MAC-Adresse (Anfrage) \\
 Type: 0x806 \\
 Danach ARP-Header
 
-\textbf{ARP-Cache} \\
+\subsection*{ARP-Cache}
 Die Einträge werden im ARP-Cache gespeichert (ca 5 min) \\
 IP MAC Time
 
-\textbf{ARP-Spoofing}
+\subsection*{ARP-Spoofing}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/arpspoofing.jpeg}
 	\caption{ARP-Spoofing}
-	\label{fig:arpspoofing}
 \end{figure}
 
 

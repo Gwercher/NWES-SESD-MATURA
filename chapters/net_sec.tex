@@ -12,9 +12,9 @@ Netzwerkangriffe können auf unterschiedliche Arten, unterschiedlichen Ebenen un
 		\begin{tabular}[c]{@{}l@{}}DoS (Störsender, Zerstörung \\ der Infrastruktur)\\ Physischer Zugang\\ MITM, Hardware\end{tabular} & L1-Physical & \begin{tabular}[c]{@{}l@{}}Zutrittskontrolle\\ Backups\end{tabular} \\ \hline
 	\end{tabular}
 \end{table}
-Dem Angreifer reicht eventuell ein einziger Angriffspunkt im Netz. Meist sind die User (Personen) das größte Problem. $\rightarrow$ ''Der Angreifer muss nur einmal gewinnen''
+Dem Angreifer reicht eventuell ein einziger Angriffspunkt im Netz. Meist sind die User (Personen) das größte Problem. $\rightarrow$ \textbf{''Der Angreifer muss nur einmal gewinnen''}
 
-\textbf{Sicherheitsrichtlinien} \\
+\subsection*{Sicherheitsrichtlinien}
 \begin{tabular}{ | p{\dimexpr 0.5\linewidth-2\tabcolsep} | p{\dimexpr 0.5\linewidth-2\tabcolsep} |} \hline
 	\textbf{User} & \textbf{Unternehmen} \\ \hline
 	$\bullet$ Passwörter (Mindestlänge, eins pro Account, keine persönlichen Daten) & $\bullet$ Passwortrichtlinien, User Verwaltung, Recht vergeben \\
@@ -33,13 +33,13 @@ Dem Angreifer reicht eventuell ein einziger Angriffspunkt im Netz. Meist sind di
 \section{Firewall}
 Mit einer Firewall kann der eingehende/ausgehende Datenverkehr kontrolliert, protokolliert und gefiltert werden (sperren, freigeben).
 
-\textbf{Unterscheidung nach Position}
+\subsection*{Unterscheidung nach Position}
 \begin{itemize}
 	\item \textbf{Personal Firewall} (am eigenen Gerät) z.B. Windows Defender, UFW,...
 	\item \textbf{External Firewall} (zwischen lokalen \& globalen Netz) z.B. ASA, Fortinet, Barracuda, PFSense,...
 \end{itemize}
 
-\textbf{Unterscheidung nach Funktion}
+\subsection*{Unterscheidung nach Funktion}
 \begin{itemize}
 	\item (L4) \textbf{Paketfilter:} IP-Adressen, Ports z.B. ACL
 	\item (L4) \textbf{Stateful Inspection:} Untersucht die ganze Sitzung (mehrere Aufrufe zu z.B. gleiche IPs)
@@ -80,8 +80,7 @@ Erstellt eine verschlüsselte Verbindung zu einem entfernten VPN-Server.
 	\includegraphics[width=0.8\linewidth]{figures/vpn.png}
 	\caption{VPN}
 \end{figure}
-
-Arten von VPN:
+\subsection*{Arten von VPN}
 \begin{itemize}
 	\item Ende-zu-Ende VPN
 	\item Ende-zu-Netz VPN
@@ -89,7 +88,7 @@ Arten von VPN:
 \end{itemize}
 
 \section{ESA (Email Security Appliance) \& WSA (Web Security Appliance)}
-Funktioniert wie ein Proxy-Server.
+Funktioniert wie ein Proxy-Server, spezifisch für Email/Web.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/esawsa.jpeg}

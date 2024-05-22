@@ -1,7 +1,7 @@
 \chapter{IPv6}
 Eine IPv6-Adresse ist eine 128 Bit Zahl. Es gibt $2^{128}$ IPv6-Adressen ($340\cdot10^{36}$).
 
-\textbf{Schreibweise einer IPv6-Adresse} \\
+\subsection*{Schreibweise einer IPv6-Adresse}
 \begin{itemize}
 	\item Hexadezimale Schreibweise (32 Zeichen)
 	\item Gruppen von 16 Bit mit : getrennt
@@ -14,14 +14,14 @@ Bsp: \\
 2001:ABAD:0:430:0:0:C9:1 \\
 2001:ABAD:0:430::C9:1
 
-\textbf{Subnetzmaske}
+\subsection*{Subnetzmaske}
 \begin{itemize}
 	\item trennt in Netz- und Hostteil 
 	\item nur noch Präfix-Notation
 	\item Es wird fast nur /64 verwendet
 \end{itemize}
 
-\textbf{Idee von IPv6}
+\subsection*{Idee von IPv6}
 \begin{itemize}
 	\item mehr IP-Adressen
 	\item Problem: alle Protokolle die IPv4 verwenden müssen erneuert werden
@@ -29,7 +29,7 @@ Bsp: \\
 	\item leichterer Header
 \end{itemize}
 
-\textbf{Übergang von IPv4 zu IPv6}
+\subsection*{Übergang von IPv4 zu IPv6}
 \begin{itemize}
 	\item Dualer Stack
 	\item Translation
@@ -46,7 +46,7 @@ Bsp: \\
 	\end{figure}
 \end{itemize}
 
-\textbf{Kommunikationsarten}
+\subsection*{Kommunikationsarten}
 \begin{itemize}
 	\item Unicast
 	\item Multicast \\
@@ -55,7 +55,7 @@ Bsp: \\
 	\item Anycast (der 'nägeste' einer Gruppe bekommt den Anycast)
 \end{itemize}
 
-\textbf{IPv6-Unicast Adressen} \\
+\subsection*{IPv6-Unicast Adressen}
 \begin{itemize}
 	\item Global Unicast Adressen 2000-3fff (vgl. öffentliche IP)
 	\item Link Local Adressen fe80-febf (für das lokale Netz, nicht routbar)
@@ -65,7 +65,7 @@ Bsp: \\
 	\item Embedded IPv4
 \end{itemize}
 
-\textbf{IP-Konfiguration}
+\subsection*{IP-Konfiguration}
 \begin{itemize}
 	\item statisch (GUA, LLA)
 	\item dynamisch
@@ -76,7 +76,7 @@ Bsp: \\
 	\end{itemize}
 \end{itemize}
 
-\textbf{SLAAC} \\
+\subsection*{SLAAC}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/slaac.jpeg}

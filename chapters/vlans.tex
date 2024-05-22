@@ -1,9 +1,8 @@
 \section{VLANs}
 Ein physisches Netz wird in mehrere logische Teilnetze (Layer 2) unterteilt.
-
 \begin{table}[H]
 	\begin{tabular}{l|l}
-		\multicolumn{1}{c}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
+		\multicolumn{1}{c|}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
 		\hline
 		Kosten & (Konfiguration) \\
 		Security &  \\
@@ -14,7 +13,7 @@ Ein physisches Netz wird in mehrere logische Teilnetze (Layer 2) unterteilt.
 	\end{tabular}
 \end{table}
 
-\textbf{Arten von VLANs}
+\subsection*{Arten von VLANs}
 \begin{itemize}
 	\item Daten VLANs
 	\item Default VLAN (bei cisco 1)
@@ -27,10 +26,10 @@ Access Ports transportieren nur ein VLAN. \\
 Trunk Ports können viele VLANs transportieren. \\
 Die VLAN-Namen werden zusätzlich im Header eingetragen (802.1q $\rightarrow$ Ethernet)
 
-\textbf{ACL} \\
+\subsection*{ACL}
 Je nach IP-Adresse (Standard) bzw. Port (Extended) wird ein Packet blockiert oder zugelassen.
 
-\textbf{Wildcardmask} \\
+\subsection*{Wildcardmask}
 Subnetzmaske: Teilt IP-Adresse in Netz- und Hostteil \\
 1 ... Netzteil (relevant für das Netz) \\
 0 ... Hostteil (irrelevant für das Netz) \\
@@ -45,7 +44,7 @@ Wildcardmaske '1' \& '0' können beliebig gezählt werden \\
 	0.0.0.0 ~~~~~~~~~~~~~~~ \= host
 \end{tabbing}
 
-\textbf{Position der Wildcardmask}
+\subsection*{Position der Wildcardmask}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/wildcard.jpeg}
@@ -55,14 +54,14 @@ Wildcardmaske '1' \& '0' können beliebig gezählt werden \\
 Regeln bei Interfaces: eingehend \& ausgehend \\
 \textbf{Achtung} Die letzte Zeile in jeder ACL ist 'deny any'.
 
-\textbf{Static NAT (1:1 Mapping)} \\
+\subsection*{Static NAT (1:1 Mapping)}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/static_nat.jpeg}
 	\caption{Static NAT, 1:1 Mapping}
 \end{figure}
 
-\textbf{NAT mit PAT (n:1 Mapping)}
+\subsection*{NAT mit PAT (n:1 Mapping)}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/pat_nat.jpeg}
@@ -81,8 +80,8 @@ Regeln bei Interfaces: eingehend \& ausgehend \\
 \end{table}
 
 \begin{table}[H]
-	\begin{tabular}{l|l}
-		\multicolumn{1}{c}{Vorteile} & \multicolumn{1}{c}{Nachteile} \\
+	\begin{tabular}{p{\dimexpr 0.5\linewidth-2\tabcolsep} | p{\dimexpr 0.5\linewidth-2\tabcolsep}}
+		\multicolumn{1}{c}{\textbf{Vorteile}} & \multicolumn{1}{|c}{\textbf{Nachteile}} \\
 		\hline
 		\textbf{+ IP-Adressen sparen} & \textbf{- Ende zw. Ende Verbindung geht verloren} \\
 		+ Security & - Paketverfolgung und Troubleshooting \\

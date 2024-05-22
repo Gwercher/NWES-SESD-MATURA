@@ -1,4 +1,4 @@
-\chapter{IPv4 (Internet Protocol Version 4):}
+\chapter{IPv4 (Internet Protocol Version 4)}
 Eine IPv4-Adresse ist eine 32-Bit Zahl. Es gibt also $2^{32}$ $\approx$ 4,3 Milliarden IPv4-Adressen.
 
 \begin{table}[H]
@@ -9,17 +9,19 @@ Eine IPv4-Adresse ist eine 32-Bit Zahl. Es gibt also $2^{32}$ $\approx$ 4,3 Mill
 		 \multicolumn{4}{l}{$\rightarrow$ 192.168.10.10} \\
 	\end{tabular}
 \end{table}
-\textbf{Schreibweise:} \\
+\subsection*{Schreibweise:}
 Die IPv4-Adresse wird in Dotted Decimal Notation geschrieben. Die IP-Adresse wird in 8-Bit Blöcke (Oktetten) geteilt, dezimal übersetzt und durch Punkte getrennt.
 
-\textbf{Verwendung} \\
+\subsection*{Verwendung}
 Jedes Gerät soll durch eine Adresse (IP-Adresse) eindeutig identifiziert werden. Zusätzlich sollten auch Gruppen (Netze) von Computern erstellt werden (mit Subnetzmasken). Ein Gerät mit IP-Adresse nennt man Host.
 
-\textbf{Subnetmask} \\
+\subsection*{Subnetmask}
 Ist eine 32-Bit Zahl, die in Dotted Deicmal Notation beschrieben wird. Es kommen zuerst alles Einsen und nach der ersten Null nur noch Nullen. 
+
+\subsubsection*{Typische Subnetmasken}
 \begin{table}[H]
 	\begin{tabular}{c|c|c}
-		\multicolumn{3}{l}{\textbf{Typische Subnetmasken:}} \\
+%		\multicolumn{3}{l}{\textbf{Typische Subnetmasken:}} \\
 		& Präfix & Hosts \\
 		\hline
 		255.0.0.0 & 8 & $2^{24}$ - 2 = 16.777.214 \\
@@ -38,7 +40,6 @@ Ist eine 32-Bit Zahl, die in Dotted Deicmal Notation beschrieben wird. Es kommen
 		 & & Netzteil & Hostteil
 	\end{tabular}
 \end{table}
-
 Die Subnetzmaske trennt die IP-Adresse in Netzteil und Hostteil. IP-Adresse und Subnetzmaske gehören immer zusammen.
 
 1) 2 IP-Adressen im gleichen Netz \\
@@ -63,14 +64,14 @@ Broad: 192.255.255.255
 
 
 \chapter{Netzwerke im Alltag und Grundbegriffe}
-\textbf{Netzwerk Komponenten}
+\subsection*{Netzwerk Komponenten}
 \begin{itemize}
 	\item Endgeräte (PC, Handy, Uhr, TV, Server,...)
 	\item Intermediary Devices (Router, Repeater, Switch, Hub, Access Point)
 	\item Übertragungsmedien (Drahtlos, Kupfer, Glasfaser)
 \end{itemize}
 
-\textbf{Host-Aufgaben}
+\subsection*{Host-Aufgaben}
 \begin{itemize}
 	\item Client-Server-Modell
 	\item Peer-to-Peer Modell
@@ -80,13 +81,13 @@ Broad: 192.255.255.255
 	\end{tabbing}
 \end{itemize}
 
-\textbf{Netzwerk Dokumentation}
+\subsection*{Netzwerk Dokumentation}
 \begin{itemize}
 	\item Physische Topologie (Räume, ...)
 	\item Logische Topologie (Netze, ...)
 \end{itemize}
 
-\textbf{Netzwerke nach Größe}
+\subsection*{Netzwerke nach Größe}
 \begin{itemize}
 	\item SOHO ... small office home office
 	\item LAN ... local area network
@@ -95,13 +96,13 @@ Broad: 192.255.255.255
 	\item Internet
 \end{itemize}
 
-\textbf{Netzwerke nach Funktion}
+\subsection*{Netzwerke nach Funktion}
 \begin{itemize}
 	\item SAN ... storage area network
 	\item Intranet, Extranet
 \end{itemize}
 
-\textbf{Internetzugang}
+\subsection*{Internetzugang}
 \begin{itemize}
 	\item Kabel (Glasfaser)
 	\item DSL / Dial Up
@@ -109,7 +110,7 @@ Broad: 192.255.255.255
 	\item Satellit
 \end{itemize}
 
-\textbf{Trends}
+\subsection*{Trends}
 \begin{itemize}
 	\item Video / Streaming
 	\item Cloud
@@ -119,7 +120,7 @@ Broad: 192.255.255.255
 	\item Powerline Method
 \end{itemize}
 
-\textbf{Netzwerkarchitektur}
+\subsection*{Netzwerkarchitektur}
 \begin{itemize}
 	\item Quality of Service QoS
 	\item Erweiterbarkeit
@@ -127,7 +128,7 @@ Broad: 192.255.255.255
 	\item Fehlertoleranz
 \end{itemize}
 
-\textbf{Security}
+\subsection*{Security}
 \begin{itemize}
 	\item Ransomware
 	\item DoS / DDoS
@@ -137,7 +138,7 @@ Broad: 192.255.255.255
 \end{itemize}
 
 \section{Referenzmodell (OSI und TCP/IP)}
-\begin{table}[H]
+\begin{center}
 	\begin{tabular}{|cl|l|c|}
 		\hline
 		\multicolumn{2}{|c|}{OSI} & \multicolumn{1}{c|}{Protokolle} & TCP/IP \\ \hline
@@ -149,13 +150,12 @@ Broad: 192.255.255.255
 		\multicolumn{1}{|c|}{2} & Data Link Layer & \multirow{2}{*}{Wifi, Ethernet, ARP} & \multirow{2}{*}{Network Access Layer} \\ \cline{1-2}
 		\multicolumn{1}{|c|}{1} & Physical Layer &  &  \\ \hline
 	\end{tabular}
-\end{table}
+\end{center}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/datenuber.jpeg}
 	\caption{OSI-Modell Datenübertragung}
-	\label{fig:osi_datenuber}
 \end{figure}
 
 \textbf{Layer 1 (Physical):} Bits übertragen \\
@@ -166,10 +166,9 @@ Broad: 192.255.255.255
 \textbf{Layer 6 (Presentation):} Darstellung der Daten \\
 \textbf{Layer 7 (Application):} Funktionen für die Application \\
 
-\textbf{Cisco CLI}
+\subsection*{Cisco CLI}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/ciscocli.jpeg}
 	\caption{Cisco CLI}
-	\label{fig:ciscocli}
 \end{figure}

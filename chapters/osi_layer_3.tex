@@ -1,32 +1,30 @@
 \subsection{Layer 3 (Network)}
-\textbf{Aufgaben}
+\subsection*{Aufgaben}
 \begin{itemize}
 	\item Routing
 	\item Globale Adressierung
 	\item Kommunikation mit L2 \& L4
 \end{itemize}
-
 \textbf{Protkolle:} IPv4, IPv6, ICMP, RIP, OSPF, EIGRP, IS-IS, BGP
 
-\textbf{IPv4} \\
+\subsection*{IPv4}
 Eigenschaften von IP
 \begin{itemize}
 	\item Verbindungslos
 	\item Best Effort
 	\item Medium unabhängig
 \end{itemize}
-
 \textbf{IP-Header (8.2.2)}
 Wichtige Felder: Source \& Destination IP, Time-to-Live
 
-\textbf{Kommunikationsart}
+\subsection*{Kommunikationsart}
 \begin{itemize}
 	\item Unicast (IP des Host)
 	\item Multicast (224.0.0.0 - 239.255.255.255)
 	\item Broadcast (letzte IP im Netz, 255.255.255.255)
 \end{itemize}
 
-\textbf{Spezielle IP-Adressen} \\
+\subsection*{Spezielle IP-Adressen}
 \begin{itemize}
 	\item 127.0.0.0 / 8 ... localhost
 	\item 10.0.0.0 / 8
@@ -35,17 +33,16 @@ Wichtige Felder: Source \& Destination IP, Time-to-Live
 	\item 169.254.0.0 / 16 ... APIPA
 	\item 192.0.2.0 / 24 ... Testnetz
 \end{itemize}
-
 \textbf{Fazit:} Zu wenig IPv4-Adressen!
 
-\textbf{Deshalb}
+\subsection*{Deshalb}
 \begin{itemize}
 	\item VLSM (variable length subnet mask)
 	\item NAT
 	\item IPv6
 \end{itemize} 
 
-\textbf{Classful Addressing (uralt)} \\
+\subsection*{Classful Addressing (uralt)}
 Das erste Oktett bestimmt die Subnetzmaske (/8, /16, /24)
 \begin{table}[H]
 	\begin{tabular}{ccll}
@@ -57,16 +54,16 @@ Das erste Oktett bestimmt die Subnetzmaske (/8, /16, /24)
 	\end{tabular}
 \end{table}
 
-\textbf{Classless Addressing (veraltet!)} \\
+\subsection*{Classless Addressing (veraltet!)}
 Die Subnetzmasken /8, /16, /24 können beliebig verwendet werden
 
-\textbf{CIDR (Classless Inter-Domain Routing)} \\
+\subsection*{CIDR (Classless Inter-Domain Routing)}
 Es können beliebige Subnetzmasken (z.B. /25, /26, ...) verwendet werden. Alle Subnetze werden gleich groß.
 
-\textbf{VLSM (variable length subnet mask)} \\
+\subsection*{VLSM (variable length subnet mask)}
 Alle Subnetzmasken können beliebig verwendet werden. Die Netzte dürfen sich nicht überschneiden.
 
-\textbf{Subnetzmasken}
+\subsection*{Subnetzmasken}
 \begin{table}[H]
 	\begin{tabular}{cccl}
 		Präfix Notation & Dotted Decimal Notation & Hosts & Subnetz von /24 \\
@@ -81,14 +78,12 @@ Alle Subnetzmasken können beliebig verwendet werden. Die Netzte dürfen sich ni
 	\end{tabular}
 \end{table}
 
-\textbf{Bsp 1 (CIDR):}
+\subsection*{Bsp 1 (CIDR):}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/bsp1_cidr.jpeg}
 	\caption{CIDR Beispiel}
-	\label{fig:bsp1_cidr}
 \end{figure}
-
 \begin{table}[H]
 	\begin{tabular}{llll}
 		1 & 192.168.10.0 / 27 & Netzadresse & 192.168.100.0 \\
@@ -111,14 +106,12 @@ Alle Subnetzmasken können beliebig verwendet werden. Die Netzte dürfen sich ni
 	\end{tabular}
 \end{table}
 
-\textbf{Bsp 2 (VLSM):}
+\subsection*{Bsp 2 (VLSM):}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/bsp2_vlsm.jpeg}
 	\caption{VLSM Beispiel}
-	\label{fig:bsp2_vlsm}
 \end{figure}
-
 \begin{table}[H]
 	\begin{tabular}{llll}
 		1 & 172.16.0.0 / 25 & Netzadresse & 172.16.0.0 \\

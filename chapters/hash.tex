@@ -11,7 +11,7 @@ Die Elemente der Lösungsmenge haben meist eine fixe Länge.
 	$\bullet$ CRC ...
 \end{tabbing}
 
-\textbf{Kryptographische Hashfunktionen} \\
+\section{Kryptographische Hashfunktionen}
 Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die wichtigste Eigenschaft ist, dass es sich um eine Einwegfunktion handelt.
 \begin{figure}[H]
 	\centering
@@ -19,7 +19,7 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 	\caption{Einwegfunktion}
 \end{figure}
 
-\textbf{Eigenschaften}
+\subsection*{Eigenschaften}
 \begin{itemize}
 	\item \textbf{Einwegfunktion:} Unumkehrbarkeit muss so gut wie möglich gegeben sein
 	\item Diffusion ('Lawineneffekt'): kleine Änderung in der Eingabe bewirkt die ganze Ausgaben.
@@ -28,7 +28,7 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 	\item Kollisionsresistenz: Die Wahrscheinlichkeit, dass Kollisionen vorkommen soll so klein wie möglich sein (im besten Fall gleich Null sein)
 \end{itemize}
 
-\textbf{Hash-Algorithmen}
+\subsection*{Hash-Algorithmen}
 \begin{itemize}
 	\item MD5: 128 Bit Hashwert, unsicher!
 	\item SHA (secure hash algorithm)
@@ -41,7 +41,7 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 	\item GOST, Whirlpool
 \end{itemize}
 
-\textbf{Ablauf SHA-256} 
+\subsection*{Ablauf SHA-256} 
 \begin{itemize}
 	\item Block erstellen (Auffüllen, Startblock erstellen, Wurzel von Primzahlen)
 	\item Bitrotation, Zeilen integrieren (Diffusion)
@@ -51,7 +51,7 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 
 \textbf{Zusatz:} Message Authentication Code z.B. HMAC: Schlüssel-Hash-Nachtrichtauthentifizierung, Pre-Shared-Key
 
-\textbf{Angriffe}
+\subsection*{Angriffe}
 \begin{itemize}
 	\item Brute-Force
 	\item Phising
@@ -61,9 +61,9 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 	$\rightarrow$ viele Hashwerte als Kette gespeichert
 \end{itemize}
 
-\textbf{Passwörter} \\
+\section{Passwörter}
 \begin{enumerate}
-	\item lokale Speicherung
+	\item \textbf{lokale Speicherung}
 	\begin{itemize}
 		\item Länge des Passworters (mind 12 Zeichen)
 		\item keine Wörter, persönliche Informationen
@@ -71,16 +71,16 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 		\item Jedes Passwort nur einmal verwenden
 		\item Passwortmanager verwenden oder MFA als Alternative
 	\end{itemize}
-	\item Speicherung am Server
+	\item \textbf{Speicherung am Server}
 	\begin{itemize}
-		\item Klartext \Lightning: Zugriff auf Datenbank, Admin, MITM
-		\item Gehashed \Lightning: MITM, gleiche Passwörter erkennbar
-		\item Gehashed + Salt: Mitm, Brute-Force
-		\item Gehashed + Salt + Pepper \\
-		Salt: Zufällige Zeichenkette die im Klartext in der Datenbank gespeichert wird $\rightarrow$ Jeder bekommt eigenen Hashwert \\
-		Pepper: Zufällige Zeichenkette die NICHT in der Datenbank steht
+		\item \textbf{Klartext} \Lightning: Zugriff auf Datenbank, Admin, MITM
+		\item \textbf{Gehashed} \Lightning: MITM, gleiche Passwörter erkennbar
+		\item \textbf{Gehashed + Salt:} Mitm, Brute-Force
+		\item \textbf{Gehashed + Salt + Pepper} \\
+		\textbf{Salt:} Zufällige Zeichenkette die im Klartext in der Datenbank gespeichert wird $\rightarrow$ Jeder bekommt eigenen Hashwert \\
+		\textbf{Pepper:} Zufällige Zeichenkette die NICHT in der Datenbank steht
 	\end{itemize}
-	\item Austausch Client-Server
+	\item \textbf{Austausch Client-Server}
 	\begin{itemize}
 		\item PAP unsicher! 
 		\begin{figure}[H]
@@ -99,10 +99,11 @@ Kryptographische Hashfunktionen müssen spezielle Eigenschaften erfüllen. Die w
 	\end{itemize}
 \end{enumerate}
 
-\textbf{AAA:} Autorisierung (Was?), Authentifizierung (Wer?) \& Accounting (Wann?) \\
+\section{AAA}
+Autorisierung (Was?), Authentifizierung (Wer?) \& Accounting (Wann?) \\
 Protokolle: RADIUS, TACACS+
 
-\textbf{PKI (Public Key Infrastruktur)} \\
+\section{PKI (Public Key Infrastruktur)}
 Digitale Zertifikate sind für die Authentifizierung eines öffentlichen Schlüssels und seiner zulässigen Anwendung bzw. Geltungsbereich 
 
 \begin{tabbing}
@@ -116,10 +117,11 @@ Digitale Zertifikate sind für die Authentifizierung eines öffentlichen Schlüs
 	\caption{Public Key Infrastruktur}
 \end{figure}
 
-\textbf{Alternative:} Web of Trust
+\textbf{Alternative:} Web of Trust \\
 
+\section{Zusammenfassung}
 \begin{tabular}{ | p{\dimexpr 0.5\linewidth-2\tabcolsep} | p{\dimexpr 0.5\linewidth-2\tabcolsep} |} \hline
-	\textbf{Zusammenfassung} & \textbf{typische Protokolle} \\ \hline
+	\textbf{verwendete Algorithmen} & \textbf{typische Protokolle} \\ \hline
 	AES/DES & HTTPS \\
 	RSA & IPsec \\
 	Diffie-Hellman & VPN \\
@@ -130,7 +132,7 @@ Digitale Zertifikate sind für die Authentifizierung eines öffentlichen Schlüs
 	\hline
 \end{tabular} 
 
-\textbf{HTTPS:} HTTP + TLS (SSL) \\
+\section{HTTPS:} HTTP + TLS (SSL)
 TLS ... transport layer security, Verschlüsselung nach Layer 4
 \begin{itemize}
 	\item Symmetrische Verschlüsselung
