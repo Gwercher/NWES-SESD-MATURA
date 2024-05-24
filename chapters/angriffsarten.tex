@@ -6,34 +6,82 @@ $m_i$ ... die $i$-te Klartext Nachricht \\
 $c_i$ ... den zugehörigen Chiffretext
 
 \subsection{Ciphertext-Only Angriff}
-x
+\textit{Eve} hat nur die Ciphertexte $c_i$, $i$ = 1,...,$n$, zur Verfügung. Mögliche Ziele: Klartextnachricht herausfinden, Schlüssel herausfinden oder Ciphertext zu Klartext zuordnen.
+
+Von dieser (schwachen) Angriffsmöglichkeit ist immer auszugehen, weile \textit{Eve} nur die Nachrichten abfangen und analysieren muss. Analysemethoden: Brute-Force, Wörterbuchattacke, Statistik/Muster.
 
 \subsection{Kown-Plaintext Angriff}
-x
+\textit{Eve} hat neben den Ciphertexten $c_i$, $i$ = 1,...,$n$, auch die Klartexte $m_i$ zur Verfügung oder Ahnung davon. Mögliche Ziele: Schlüssel herausfinden oder Ciphertext zu Klartext zuordnen.
+
+Wieso sollte \textit{Eve} die Klartexte kennen?
+\begin{itemize}
+	\item Sie fängt mehrere Nachrichten ab, beobachtet das Verhalten des Empfängers und schließt so auf den Inhalt der Nachricht. (\textit{''Finden Sie sich um 17:00 im Park ein''}, \textit{''Finden Sie sich um 12:00 im Park ein''} $\rightarrow$ Nachrichtenteile die sich verändern und welche die sich nicht verändern)
+	\item \textit{Eve} vermutet, dass das immer gleiche Ende eines Briefe ''Beste Grüße'' heißen könnte.
+	\item Regelmäßige Berichte zur gleiche Uhrzeit in gleicher Form z.B. Wetterbericht beim Militär
+	\item Funksprüche, welche melden, dass sie nichts zu melden haben
+\end{itemize}
 
 \subsection{Chosen-Plaintext Angriff}
-x
+Der Angriff entspricht dem Kown-Plaintext Angriff, bloß dass \textit{Eve} die Möglichkeit hat, die Klartexte $m_i$ vorzugeben oder zu beeinflussen. Wie kann \textit{Eve} \textit{Alice} dazu bringen Klartexte zu verschlüsseln und an \textit{Bob} zu senden?
+\begin{itemize}
+	\item Durch inszenieren berichtet ein feindlicher Agent etwas
+	\item England 'säte' Gebiete in der Nordsee mit Minen. Die darauffolgenden Nachrichten der Deutschen wird höchstwahrscheinlich Koordinaten der Gebiete beinhalten.
+	\item Die Amerikaner wussten, dass Japan 'AF' angreifen will und vermuteten, weil andere hawaiianische Inseln mit 'A' begannen, dass es sich um Midway handeln könnte. Sie sendeten eine Nachricht von Midway, dass die ein angeblicher Bedarf an Vorräten anliegt. Daraufhin sendeten die Japaner eine Nachricht, dass 'AF' Vorräte benötige.
+	\item Ein Chosen-Plaintext Angriff ist bei asymmetrischen Kryptosystemen immer möglich, weil der Schlüssel, der zum Verschlüsseln verwendet wird öffentlich bekannt ist. So könnte \textit{Eve} typische Nachrichten ('ja', 'nein',...) verschlüsseln und mit dem Ciphertext vergleichen.
+\end{itemize}
 
 \subsection{Brute-Force Angriff}
-x
+Dieser Angriff bezeichnet das bloße Durchprobieren aller möglichen Schlüssel. Dieser Angriff ist immer möglich. Ihn abzuwehren gelingt durch lange Schlüsselräume.
 
 \subsection{Wörterbuchangriff}
-x
+Wenn die Schlüssel nicht alle gleich wahrscheinlich sondern von Menschen ausgewählt sind (besonders bei Passwörtern), ist es vernünftig, wahrscheinliche Schlüssel zuerst durchzuprobieren (Wörter aus Wörterbüchern, Kombinationen, Falschschreibungen, Passwortlisten,...).
 
 \subsection{Replay Angriff}
-x
+\textit{Mallory} hört die verschlüsselte Nachricht an \textit{Bob} ab und sendet sie später, ohne sie zu verstehen, wieder an \textit{Bob}. (Wenn \textit{Alice} einen Aktienkauf autorisiert hat, muss sie nun das Vielfache bezahlen).
+
+Abwehren lassen sich Replay Angriffe durch Zeitstempel oder Schlüsselwechsel nach mehreren Nachrichten.
 
 \subsection{Man-in-the-Middle Angriff}
-x
+\textit{Mallory} schaltet sich zwischen \textit{Alice} und \textit{Bob}, so dass \textit{Alice} denkt, sie würde mit \textit{Bob} kommunizieren und umgekehrt. In Wahrheit interagieren beide mit \textit{Mallory}, die die Nachrichten von \textit{Alice} und \textit{Bob} lesen kann und weiterleitet. \textit{Alice} und \textit{Bob} merken nicht, dass ihre Kommunikation abgehört wird, zumindest bis \textit{Mallory} mit dem Angriff aufhört. (Bei Unterbrechung der Kommunikation wird \textit{Mallory} auffliegen)
 
 \subsection{Verkehrsflussanalysen}
-x
+\textit{Eve} bekommt mit, dass \textit{Alice} und \textit{Bob} kommunizieren (wie oft, wann, welcher Rhythmus,...). Dies ist dann schon sehr aussagekräftig. (zwei CEOs bei Fusion, Preisabsprache,...) 
+
+Verkehrsflussanalysen können prinzipiell nicht abgewehrt werden. Jedoch können versendete Dummy-Nachrichten die Kommunikation verschleiern.
 
 \subsection{Harvest-now-decrypt-later Angriff}
-x
+\textit{Eve} hört jetzt die Nachrichten ab und knackt die Verschlüsselung später wenn sie bessere Werkzeuge hat. Deswegen muss man sich auch heute bereits mit 'Quantum-Ready' Verschlüsselungen beschäftigen.
 
 \subsection{Seitenkanalangriffe}
-x
+Darunter werden Angriffe verstanden, die nicht das Verfahren an sich sonder seine Benutzung, Umsetzung oder Implementierung mit scheinbar nutzloser Zusatzinformationen angreifen.
+\begin{itemize}
+	\item \textbf{Zeitangriff:} 1996 wurde RSA geknackt, indem die Zeit für die Verschlüsselung gemessen wurde. Die Nachricht wurde variiert und aus der Dauer auf die Anzahl der 1en im Exponenten (privater Schlüssel) geschlossen. Einige 1.000 Messungen reichen, um RSA mit 1024 Bit zu knacken. \\ Abgewehrt kann der Angriff, indem zufällige Zahlen hinein- und später wieder herausgerechnet oder künstliche Zeitverzögerungen eingebaut werden.
+	\item \textbf{Stromangriff:} Ist die Verschlüsselung in Hardware implementiert, sind die Multiplikationen von den Quadrierungen im Square-and-Multiply Algorithmus am Oszilloskop gut unterscheidbar. Ebenso Substitutionen und Permutationen. \\ Durch parallel dazu laufende Dummy-Operationen lässt sich dies vermeiden.
+	\item \textbf{Elektromagnetische Strahlung:} Elektronische Geräte emittieren elektromagnetische Strahlung, aus der sich auf die Operationen schließen lassen könnte. TEMPEST ist der Deckname für ein Abhörverfahren bzw. Spezifikation, die die verhindern soll. \\
+	Im Botschaftsgebäude gibt es speziell abgeschirmte Räume (Faraday'sche Käfige). Auch bei Mils Electronic gab es so etwas, zusätzlich wurden Signale im Kabeln gefiltert, damit Tastendrücke nicht im Stromnetz aufgeprägt werden.
+	\item \textbf{Eingebaute Hintertür:} Es wird absichtlich eine Schwachstelle eingebaut. Verhinder lässt sich das teilweise durch offengelegte Verfahren und Quellcodes. \\
+	Das FBI bauten eine Hintertür in eine App welche Organisierten Verbrechern zur Kommunikation verwendeten (Operation Trojan Shield).
+	\item \textbf{Implementierungsfehler:} Nicht alle Fehler fallen sofort auf, RSA funktioniert auch mit schlechten Zahlen. Besonders anfällig: Verfahren 'ohne Umkehrung' wie Hashfunktionen und Zufallszahlgeneratoren.
+	\item \textbf{Das Problem des sicheren Löschens:} Daten zu verschlüsseln ist völlig nutzlos, wenn sich die Originale nicht sicher löschen kann? Dazu: temporäre Dateien im Betriebssystem.
+\end{itemize}
 
 \subsection{Angriffe auf die BenutzerInnen}
-x
+\textbf{Folter, Erpressung, Bestechung,...} Die meisten Geldautomatenbetrüger sind Insider (Bankangestellte, Techniker,...). Ebenso kommt der Großteil der IT-Angriffe von innen! \\
+Abgemildert kann dieses Problem durch Rollentrennung oder Logs/Protokolle.
+
+\textbf{Schwachstelle Mensch:} Menschen nutzen aus Faulheit schwache Passwörter oder haben sie auf Post-its am Schreibtisch, chiffrieren nicht, übertreiben Sorgfalt (immer die gleiche Anrede mit Titeln, militärische Sprache), bedienen Hard- und Software falsch, \textbf{Social Engineering},... \\
+
+Ein häufiges Verständnisproblem ist, zu denken, dass Verfahren 'doch irgendwie unsicher' sind, die sich unter Einsatz aller Computer in Jahrzehnten brechen lassen.
+\begin{itemize}
+	\item Angriffe kosten Geld
+	\item Angriffe werden nicht durchgeführt, wenn sie teurer sind als wie das was sie preisgeben
+	\item es gibt meist einfachere und billigere Möglichkeiten
+	\begin{itemize}
+		\item Wohnungstür mit Stahlkern bei Terrassentür aus Glas
+		\item Iris- und Fingerabdruckscanner bei Tür mit Katzenklappe
+		\item 10-stellige PINS, welche auf die Karte geschrieben werden
+	\end{itemize}
+	\item Rollenspiel-Zitat: \textit{''If you find yourself in the company of a halfling and an ill-tempered dragon, remember that you do not have to outrun the dragon; you simply have to outrun the halfling''}
+	\item die einfachsten, billigsten und effektivsten Angriffe sidn \textbf{Social Engineering}
+\end{itemize}
+
