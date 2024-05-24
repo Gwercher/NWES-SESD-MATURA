@@ -1,13 +1,91 @@
 \chapter{Mathematische Grundlagen der Kryptographie}
 \section{Modulo}
-x
+$a$ ganzzahlig durch $m$ dividieren $\rightarrow$ ganzzahligen Quotienten $q$ und den Rest $r$: \\
+$a = q \cdot m + r$ \\
+$a$ ... Ganzzahl \\
+$m$ ... Modul
+
+Für den Rest dieser Gangzahldivision:
+$r = a mod m$ (''$a$ modulo $m$)
+
+Beachte:
+\begin{itemize}
+	\item Es gibt nur $m$ verschiedene Reste bei ganzzahliger Division durch $m$
+	\item der Rest $r$ ist nicht negativ! Das gilt auch bei $a$ $<$ 0
+\end{itemize}
+
+13 mod 3 = 1 \qquad 13 = 4 $\cdot$ 3 + 1\\
+42 mod 5 = 2 \qquad 42 = 8 $\cdot$ 5 + 2\\
+42 mod 9 = 6 \qquad 42 = 4 $\cdot$ 9 + 6\\
+-13 mod 3 = 2 \qquad -13 = -5 $\cdot$ 3 + 2\\
+-42 mod 9 = 3 \qquad -42 = -5 $\cdot$ 9 + 3\\
+-36 mod 9 = 0 \qquad -36 = -4 $\cdot$ 9 + 0 \\
+
+mod ist eine \textbf{Rechenoperation}. Sie erhält zwei Argumente, $a$ und $m$, und liefert eine Zahl $r$ als Ergebnis.
 
 \section{Kongruenz modulo $m$}
-x
+Wenn 2 ganze Zaheln ($a$, $b$) nach Division durch $m$ den gleichen Rest haben, nennt man sie \textbf{kongruent modulo} $m$ und schreibt:\\
+$a \equiv b$ $(mod$ $m)$ \\
+Beispiel: $72 \equiv 12$ $(mod$ $10)$ \\
+Andere Modulo $m$ sodass $72 \equiv 12$ $(mod$ $m)$: \\
+2, 3, 4, 5, 6, 10, 12, 15, 30, 60 \\
+Wir sehen, dass man $a$ und $b$ in gewissem Sinne als gleich ansehen kann. Deshalb verwendet man ein Symbol, das an Gleichheit erinnert. Bei der Kongruenz modulo $m$ handelt es sich nicht um eine Rechenoperation sondern um eine \textbf{Aussage}, dass sich nämlich $a$ und $b$ nur um ein Vielfaches des Moduls $m$ unterscheiden: \\
+$a \equiv b$ $(mod$ $m)$ $\Leftrightarrow$ $a - b = k \cdot m$
 
+Welche der folgenden Ausdrücke sind wahr?
+25 $\equiv$ 0 (mod 5) = $\checkmark$ \\
+25 $\equiv$ 20 (mod 5) = $\checkmark$ \\
+25 $\equiv$ 20 (mod 10) = \Lightning \\
+25 mod 5 = kein Sinn \\
+
+Berechne, falls möglich
+25 $\equiv$ 10 = \Lightning \\
+25 mod 10 = 5 
 \section{Uhrenarithmetik}
-x
-
+Um die Rechenregeln im Zusammenhang mid modulo kennenzulernen, rechnen wir mit Uhrzeiten (modulo 24).
+\begin{itemize}
+	\item Ein Fertigungsprozess startet um 17 Uhr und dauert 21h. Um welche Uhrzeit endet er? \\
+	17 + 21 = 38 $\equiv$ 14 (mod 24) $\rightarrow$ er endet um 14 Uhr
+	\item Ein Fertigungsprozess startet um Mitternacht und dauert 38h für den ersten Arbeitsschritt und dann noch einmal 40h für den zweiten. \\
+	34 + 40 = 78 $\equiv$ 6 (mod 24) \\
+	Alternativ: \\
+	38 + 40 $\equiv$ 14 + 40 (mod 24) \\
+	38 + 40 $\equiv$ 14 + 16 (mod 24) \\
+	38 + 40 $\equiv$ 30 (mod 24) \\
+	38 + 40 $\equiv$ 6 (mod 24) \\
+	Wir erkennen: \textbf{Bei der Addition modulo $m$ ist es egal, ob vor dem Addieren oder in Zwischenschritten um $m$ reduziert wird}
+	\item Ein Arbeitsschritt dauert 22h und muss mit Start um Mitternacht 7-mal durchgeführt werden. Um wie viel Uhr ist er zu Ende? \\
+	22 $\cdot$ 7 = 154 $\equiv$ 10 (mod 24) \\
+	Alternativ: \\
+	22 $\cdot$ 7 $\equiv$ (-2) $\cdot$ (mod 24) $\equiv$ -14 (mod 24) $\equiv$ 10 (mod 24) \\
+	Wir erkennen: \textbf{Bei der Multiplikation modulo $m$ ist es egal, ob vor dem Multiplizieren oder in Zwischenschritten um $m$ reduziert wird.}
+	\item Daraus folgt, dass \textbf{auch beim Potenzieren die Basis im Voraus um $m$ reduziert werden darf.} \\
+	$3^5$ mod 2 = $1^5$ mod 2 = 1 mod 2 = 1
+\end{itemize}
+	
+	(12 + 20) mod 3 = (0 + 2) mod 3 = 2 \\
+	(81 - 40) mod 7 = (4 - 5) mod 7 = -1 mod 7 = 6 \\
+	(23 $\cdot$ 15) mod 4 = (3 $\cdot$ 3) mod 4 = 9 mod 4 = 1 \\
+	(15 $\cdot$ 16 $\cdot$ 17) mod 5 = (0 $\cdot$ 1 $\cdot$ 2) mod 5 = 0 \\
+	(18 + 34 $\cdot$ 23) mod 8 = (2 + 2 $\cdot$ 7) mod 8 = (2 + 14) mod 8 = 16 mod 8 = 0 \\
+	$17^8$ mod 7 = $3^8$ mod 7 = 6561 mod 7 = 2 
+	
+	$j^{2}$ = -1 \\
+	$j^{3}$ = -j \\
+	$j^{4}$ = 1 \\
+	$j^{10}$ = -1 \\
+	$j^{2024}$ = 1 \\
+	$j^{9876543210}$ = -1
+	
+	(100 + 823) mod 5 = (0 + 3) mod 5 ) 3 \\
+	(12 + 5 $\cdot$ 18) mod 7 = (5 + 5 $\cdot$ 4) mod 7 = (5 + 20) mod 7 = (5 + 6) mod 7 = 11 mod 7 = 4 \\
+	(23 $\cdot$ 18) mod 5 = (3 $\cdot$ 3) mod 5 = 9 mod 5 = 4 \\
+	(19 * 37 * 22) mod 7 = (5 * 2 * 1) mod 7 = 10 mod 7 = 3 \\
+	(41 * 23 * 25) mod 9 = (5 * 5 * 7) mod 9 = (25 * 7) mod 9 = (7 * 7) mod 9 = 49 mod 9 = 4 \\
+	... \\
+	$14^3$ mod 13 = $1^3$ mod 13 = 1 \\
+	(212 * $31^2$) mod 21 = (2 * $10^2$) mod 21 = 200 mod 21 = 4 * 50 mod 21 = 4 * 8 mod 21 = 32 mod 21 = 11 \\
+	($19^4$ + 14 * $25^5$) mod 8 = ($3^4$ + 6 * $1^5$) mod 8 = 87 mod 8 = 7
 \section{Restklassenring $\mathbb{Z}_m$}
 x
 
