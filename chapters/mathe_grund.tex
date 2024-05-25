@@ -80,46 +80,131 @@ Um die Rechenregeln im Zusammenhang mid modulo kennenzulernen, rechnen wir mit U
 	(100 + 823) mod 5 = (0 + 3) mod 5 ) 3 \\
 	(12 + 5 $\cdot$ 18) mod 7 = (5 + 5 $\cdot$ 4) mod 7 = (5 + 20) mod 7 = (5 + 6) mod 7 = 11 mod 7 = 4 \\
 	(23 $\cdot$ 18) mod 5 = (3 $\cdot$ 3) mod 5 = 9 mod 5 = 4 \\
-	(19 * 37 * 22) mod 7 = (5 * 2 * 1) mod 7 = 10 mod 7 = 3 \\
-	(41 * 23 * 25) mod 9 = (5 * 5 * 7) mod 9 = (25 * 7) mod 9 = (7 * 7) mod 9 = 49 mod 9 = 4 \\
+	(19 $\cdot$ 37 $\cdot$ 22) mod 7 = (5 $\cdot$ 2 $\cdot$ 1) mod 7 = 10 mod 7 = 3 \\
+	(41 $\cdot$ 23 $\cdot$ 25) mod 9 = (5 $\cdot$ 5 $\cdot$ 7) mod 9 = (25 $\cdot$ 7) mod 9 = (7 $\cdot$ 7) mod 9 = 49 mod 9 = 4 \\
 	... \\
 	$14^3$ mod 13 = $1^3$ mod 13 = 1 \\
-	(212 * $31^2$) mod 21 = (2 * $10^2$) mod 21 = 200 mod 21 = 4 * 50 mod 21 = 4 * 8 mod 21 = 32 mod 21 = 11 \\
-	($19^4$ + 14 * $25^5$) mod 8 = ($3^4$ + 6 * $1^5$) mod 8 = 87 mod 8 = 7
+	(212 $\cdot$ $31^2$) mod 21 = (2 $\cdot$ $10^2$) mod 21 = 200 mod 21 = 4 $\cdot$ 50 mod 21 = 4 $\cdot$ 8 mod 21 = 32 mod 21 = 11 \\
+	($19^4$ + 14 $\cdot$ $25^5$) mod 8 = ($3^4$ + 6 $\cdot$ $1^5$) mod 8 = 87 mod 8 = 7
 \section{Restklassenring $\mathbb{Z}_m$}
-x
+......
 
 \subsection{Allgemeine Eigenschaften der Restklassenringe, algebraische Strukturen}
-x
+......
 
 \section{Berechnung des ggT}
-x
+Die berechnung des \textbf{größten gemeinsamen Teiler} kann durch unterschiedliche Möglichkeiten berechnet werden. Durchgeführt mit $a$ = 2079 und $b$ = 735.
 
 \subsection{Primfaktorzerlegung beider Zahlen}
-x
+Sehr aufwändig! Man zerlegt beide Zahlen in ihre Primfaktoren. Der ggT wird aus allen gemeinsamen Primfaktoren gebildet (Taucht ein Primfaktor mehrfach auf, wird er so oft verwendet, wie er in beiden Zahlen vorkommt): \\
+2079 = 3 $\cdot$ 693 = 3 $\cdot$ 3 $\cdot$ 231 = 3 $\cdot$ 3 $\cdot$ 3 $\cdot$ 7 $\cdot$ 11 \\
+735 = 3 $\cdot$ 245 = 5 $\cdot$ 3 $\cdot$ 49 = 7 $\cdot$ 7 $\cdot$ 5 $\cdot$ 3 \\
+ggT(2079, 735) = 3 $\cdot$ 7 = 21
 
 \subsection{Euklidischer Algorithmus}
-x
+Man subtrahiert immer die kleinere von der größteren Zahl und fährt mit kleinerer Zahl und Differenz fort. Die letzte Zahl, die nicht durch subtrahieren auf 0 führt, ist der ggT.
+\begin{tabular}{rllll}
+	2079 - 735 & = 1344 &  & 2079 mod 735 & = 609 \\
+	1344 - 735 & = 609 &  & 735 mod 609 & = 126 \\
+	735 - 609 & = 126 &  & 609 mod 126 & = 105 \\
+	609 - 126 & = 483 &  & 126 mod 105 & = 21 \\
+	483 - 126 & = 357 &  & (105 mod 21 & = 0) \\
+	357 - 126 & = 231 &  &  &  \\
+	231 - 126 & = 105 &  &  &  \\
+	126 - 105 & = 21 &  &  &  \\
+	105 - 21 & = 84 &  &  &  \\
+	84 - 21 & = 63 &  &  &  \\
+	63 - 21 & = 42 &  &  &  \\
+	42 - 21 & = 21 &  &  &  \\
+	(21 - 21 & = 0) &  &  &  \\
+\end{tabular}
+
+$\rightarrow$ ggT(1079, 735) = 21 \\
+Entweder durch Subtrahieren oder Modulo rechnen.
 
 \subsection{Erweiterter euklidischer Algorithmus}
-x
+Mit dem erweiterten euklidischer Algorithmus kann das Invers einer Zahl berechnet werden. Hier wird das ggT als Vielfachsumme von $a$ und $b$ angeschrieben: \\
+$ggT$($a$, $b$) = $s$ $\cdot$ $a$ + $t$ $\cdot$ $b$
+
+Links wird der normale euklidische Algorithmus durchgeführt. Jedoch notieren wir, wie oft die kleinere Zahl in die größere passt. Diese Zahl (mal -1) multiplizieren wird mit der aktuellen Reihe und addieren die Multiplizierte Reihe mit der oberen.
+
+\begin{tabular}{rcccl}
+	2079 = & 1 $\cdot$ 2079 & + & 0 $\cdot$ 735 &  \\
+	735 = & 0 $\cdot$ 2079 & + & 1 $\cdot$ 735 & $|$ $\cdot$ -2 \\
+	609 = & 1 $\cdot$ 2079 & + & -2 $\cdot$ 735 & $|$ $\cdot$ -1 \\
+	126 = & -1 $\cdot$ 2079 & + & 3 $\cdot$ 735 & $|$ $\cdot$ -4 \\
+	105 = & 5 $\cdot$ 2079 & + & -14 $\cdot$ 735 & $|$ $\cdot$ -1 \\
+	21 = & -6 $\cdot$ 2079 & + & 14 $\cdot$ 735 & \\
+	0 = &  & &  & \\
+\end{tabular}
+
+$\rightarrow$ ggT(1079, 735) = 21 \\
+
+Ein Beispiel zur Ermittlung eines Invers: Inverse von $\overline{\text{5}}$ in $\mathbb{Z}_{26}$ \\
+\begin{tabular}{rcccl}
+	26 = & 1 $\cdot$ 26 & + & 0 $\cdot$ 5 &  \\
+	5 = & 0 $\cdot$ 26 & + & 1 $\cdot$ 5 & $|$ $\cdot$ -5 \\
+	1 = & 1 $\cdot$ 26 & + & -5 $\cdot$ 5 & $|$ fertig, da 1 links herauskommt
+\end{tabular} \\
+... daraus 
+\begin{itemize}
+	\item ggT(26, 5) = 1, daher ist $\overline{\text{5}}$ in $\mathbb{Z}_{26}$ invertierbar
+	\item[] ... würde anstatt 1 in der letzten Zeil 0 herauskommen, gäbe es kein Invers zu dieser Zahl
+	\item das Inverse von $\overline{\text{5}}$ ist $\overline{\text{-5}}$ $\rightarrow$ -5 + 26 = \textbf{21}
+\end{itemize}
 
 \section{Eulersche Phi-Funktion}
-x
+Die Phi-Funktion $\varphi$($n$) gibt die Anzahl der invertierbaren Elemente von $\mathbb{Z}_{n}$.
+
+\begin{itemize}
+	\item Ist $n$ prim, gilt $\varphi$($n$) = $n$ - 1
+	\item Ist $n$ nicht prim $\rightarrow$ Primfaktorzerlegung, $\varphi$ mit jeder Primzahl durchführen; bei mehrfachen vorkommen von Primzahlen nur einmal $\varphi$ verwenden, anschließend alle multiplizieren. Beispiel \\
+	 $\varphi$(810) = $\varphi$(2$\cdot$3$\cdot$3$\cdot$3$\cdot$3$\cdot$5) = $\varphi$(2) $\cdot$ $\varphi$(3 $\cdot$ 3 $\cdot$ 3 $\cdot$ 3) $\cdot$ $\varphi$(5) = 1 $\cdot$ 2 $\cdot$ 3 $\cdot$ 3 $\cdot$ 3 $\cdot$ 4 = 216 \\
+	 ... 216 Zahlen sind in $\mathbb{Z}_{810}$ teilerfremd und 216 invertierbare Elemente.
+\end{itemize}
+
+\textbf{Das Berechnen von Invers ist leicht. Das Bestimmen von wie viele invertierbare Elemente es gibt ist bei Primzahlen einfach, sonst aber (bei großen Zahlen besonders) schwer, da man die Primfaktorzerlegung durchführen muss.}
 
 \section{Einweg- und Falltürfunktionen}
-x
+Eine Funktion weist zu jeder \textit{Definitionsmenge} eine \textit{Wertemenge}. Für die Verschlüsselung ist dies jedoch ungünstig, da man von der verschlüsselten Nachricht einfach auf dem Klartext kommen würde.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/normal_func.png}
+	\caption{Definitionsmenge und Wertemenge einer normalen Funktion}
+\end{figure}
+
+Eine \textbf{umkehrbare Funktion} verwendet jede Wertemenge einmal. Daher ist das Umkehren aufgrund der Eindeutigkeit auch wieder einfach und für die Verschlüsselung ungünstig.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/umkehr_func.png}
+	\caption{Definitionsmenge und Wertemenge einer umkehrbaren Funktion}
+\end{figure}
+
+Eine \textbf{Einwegfunktion} ist zwar theoretisch umkehrbar, dies ist aber sehf aufwändig.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/einweg_func.png}
+	\caption{Definitionsmenge und Wertemenge einer Einwegfunktion}
+\end{figure}
+Zur Verschlüsselung kann eine Einwegfunktion jedoch auch nicht verwendet werden, da die Umkehrung sehr lange dauern würde (Beispiel Kommunikation zwischen \textit{Alice} und \textit{Bob}).
+
+Eine \textbf{Falltürfunktion} ist allgemein sehr aufwändig zum umkehren, aber sehr einfach mit Zusatzinformation.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/falltur_func.png}
+	\caption{Definitionsmenge und Wertemenge einer Falltürfunktion}
+\end{figure}
 
 \section{Modulares Potenzieren und diskreter Logarithmus}
 \subsection{Modulares Potenzieren}
-x
+......
 
 \subsection{Diskreter Logarithmus}
-x
+......
 
 \subsection{Aufwand des modularen Potenzieren}
-x
+......
 
 \subsection{Aufwand der Berechnung des diskreten Logarithmus}
-x
+......
 
