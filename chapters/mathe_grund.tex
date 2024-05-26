@@ -87,10 +87,16 @@ Um die Rechenregeln im Zusammenhang mid modulo kennenzulernen, rechnen wir mit U
 	(212 $\cdot$ $31^2$) mod 21 = (2 $\cdot$ $10^2$) mod 21 = 200 mod 21 = 4 $\cdot$ 50 mod 21 = 4 $\cdot$ 8 mod 21 = 32 mod 21 = 11 \\
 	($19^4$ + 14 $\cdot$ $25^5$) mod 8 = ($3^4$ + 6 $\cdot$ $1^5$) mod 8 = 87 mod 8 = 7
 \section{Restklassenring $\mathbb{Z}_m$}
-......
+Wenn man modulo $n$ rechnet, gibt es immer nur $n$ Zahlen. Daraus folgt (Beispiel modulo 24): \{...,-22,2,-26,50...\}. \\
+Dementsprechend kann man Zahlen die das selbe nach modulo rechnen ergeben wie folgt hinschreiben:
+$\overline{\text{2}}$ = \{...,-22,2,-26,50,...\} = $\overline{\text{26}}$
 
-\subsection{Allgemeine Eigenschaften der Restklassenringe, algebraische Strukturen}
-......
+Man wählt einen Repräsentanten, Zahl mit Strich drüber.
+
+Beispiel $\mathbb{Z}_{24}$: \\
+Addition \{...,-19,5,29...\} und \{...,-1,23,47...\} \\
+$\overline{\text{5}}$ + $\overline{\text{23}}$ = $\overline{\text{28}}$ = $\overline{\text{4}}$ oder \\
+$\overline{\text{5}}$ + $\overline{\text{23}}$ = $\overline{\text{5}}$ + $\overline{\text{-1}}$ = $\overline{\text{4}}$
 
 \section{Berechnung des ggT}
 Die berechnung des \textbf{größten gemeinsamen Teiler} kann durch unterschiedliche Möglichkeiten berechnet werden. Durchgeführt mit $a$ = 2079 und $b$ = 735.
@@ -197,14 +203,44 @@ Eine \textbf{Falltürfunktion} ist allgemein sehr aufwändig zum umkehren, aber 
 
 \section{Modulares Potenzieren und diskreter Logarithmus}
 \subsection{Modulares Potenzieren}
-......
+$basis^{exponente}$ mod $n$ \\
+Bei Potenztabellen: Reihen mit 1 $\rightarrow$ invertierbar.
 
 \subsection{Diskreter Logarithmus}
-......
+Log allgemein: $b^{x}$ = $a$ \\
+$x$ = $\text{log}_b$($a$) ... der Logarithmus von $a$ zur Basis $b$. Logarithmusfunktion ist Umkehrfunktion von Exponentialfunktion
+
+Diskrete Log: $b^{n}$ = $a$ \\
+$n$ = $\text{log}_b$($a$) ... der diskrete Logarithmus von $a$ zur Basis $b$.
+
+$\rightarrow$ Berechnung von diskreten Logarithmus ist kompliziert. Mehrere Hochzahlen liefern dasselbe Ergebnis. Diskrete Log verwendet nur die kleinste Hochzahl. \\
+
+Dadurch, dass nicht jedes Element invertierbar ist, haben viele Elemente \textbf{keinen} Logarithmus.
 
 \subsection{Aufwand des modularen Potenzieren}
-......
+$174^{231}$ mod 23 = $13^{231}$ mod 23 = $13^{11}$ mod 23 ... sehr aufwendig $\rightarrow$ daher \textbf{Square-and-Multiply Algorithmus}
+
+\subsection{Square-and-Multiply Algorithmus}
+$13^{11}$ mod 23 = $13^{\texttt{1011}}$ mod 23 \\
+
+\begin{tabular}{llllrl}
+	$\text{13}^\text{1}$ & = $\text{13}^{1}$ & = 13 & $\xrightarrow{\text{mod 23}}$ & 13 & $\xrightarrow{\text{Quadrieren}}$ \\
+	$\text{13}^\text{2}$ & = $\text{13}^{10}$ & = 13 $\cdot$ 13 = 169 & $\xrightarrow{\text{mod 23}}$ & 8 & $\xrightarrow{\text{Quadrieren}}$ \\
+	$\text{13}^\text{4}$ & = $\text{13}^{100}$ & = 8 $\cdot$ 8 = 64 & $\xrightarrow{\text{mod 23}}$ & 18 & $\xrightarrow{\text{Multiplizieren 13}}$ \\
+	$\text{13}^\text{5}$ & = $\text{13}^{101}$ & = 18 $\cdot$ 13 = 234 & $\xrightarrow{\text{mod 23}}$ & 4 & $\xrightarrow{\text{Quadrieren}}$ \\
+	$\text{13}^\text{10}$ & = $\text{13}^{1010}$ & = 4 $\cdot$ 4 = 16 & $\xrightarrow{\text{mod 23}}$ & 16 & $\xrightarrow{\text{Multiplizieren 13}}$ \\
+	$\text{13}^\text{11}$ & = $\text{13}^{1011}$ & = 16 $\cdot$ 13 = 208 & $\xrightarrow{\text{mod 23}}$ & 1 &  \\
+\end{tabular}
+\begin{enumerate}
+	\item Hochzahl in Binär umwandeln
+	\item 0 dranhängen $\rightarrow$ Quadrieren \\
+	0 zu 1 umwandeln $\rightarrow$ Multiplizieren
+	\item Zwischenergebnisse modulo rechnen
+\end{enumerate}
+
+Durch den Square-and-Multiply Algorithmus müsste man bei einer 2048 Bit Zahl \textbf{mindestens 2048 mal quadrieren} und \textbf{eventuell 2048 mal multiplizieren}.
 
 \subsection{Aufwand der Berechnung des diskreten Logarithmus}
-......
+Beim diskreten Logarithmus muss man schlussendlich durch probieren. Derzeit gibt es keine effizienten Möglichkeiten oder Algorithmus zum berechnen des diskreten Logarithmus.
 
+\textbf{Dadurch, dass das Berechnen des diskreten Logarithmus viel aufwändiger als wie das modulare Potenzieren, liegt eine kryptographische Einwegfunktion vor}
