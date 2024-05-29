@@ -42,26 +42,21 @@ Ist eine 32-Bit Zahl, die in Dotted Deicmal Notation beschrieben wird. Es kommen
 \end{table}
 Die Subnetzmaske trennt die IP-Adresse in Netzteil und Hostteil. IP-Adresse und Subnetzmaske gehören immer zusammen.
 
-1) 2 IP-Adressen im gleichen Netz \\
-10.10.226.120 / 24 \\
-10.10.226.80 / 24 \\
-
-2) 2 IP-Adressen nicht im gleichen Netz \\
-11.40.30.124 / 24 \\
-14.8.50.100 / 24 \\
-
-\begin{table}[H]
-	\begin{tabular}{ll}
-		\multicolumn{2}{l}{3) Anzahl der Hosts} \\
-		$2^{8} - 2$ & 10.10.226.0 (Netzadresse)\\
-		& 10.10.226.255 (Broadcastadresse)\\
-	\end{tabular}
-\end{table}
+\begin{enumerate}
+	\item 2 IP-Adressen im gleichen Netz \\
+	10.10.226.120 / 24 \\
+	10.10.226.80 / 24 \\
+	\item 2 IP-Adressen nicht im gleichen Netz \\
+	11.40.30.124 / 24 \\
+	14.8.50.100 / 24 \\
+	\item Anzahl der Hosts \\
+	$2^{8} - 2$ \\
+	10.10.226.0 (Netzadresse), 10.10.226.255 (Broadcastadresse)
+\end{enumerate}
 
 192.168.20.100 / 8 \\
 Netz:  192.0.0.0 \\
 Broad: 192.255.255.255
-
 
 \chapter{Netzwerke im Alltag und Grundbegriffe}
 \subsection*{Netzwerk Komponenten}
