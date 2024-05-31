@@ -64,9 +64,18 @@ numbers = noendperiod
 \usepackage{makecell}
 
 \usepackage{enumitem}
+
+\usepackage{listings}
+\lstset{language=C++,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{green}\ttfamily,
+	morecomment=[l][\color{magenta}]{\#}
+}
 %-------------------------------------------------------------------------------------------%
 % BIBLIOGRAPHY
-\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+%\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
 %\bibliography{bibliography/citations_gwercher}
 %\bibliography{bibliography/citations_egger}
 
@@ -184,7 +193,7 @@ numbers = noendperiod
 	
 	\include{chapters/modblock}
 	
-	%\include{chapters/template_info}
+%	\include{chapters/template_info}
 	
 	
 %-------------------------------------------------------------------------------------------%
