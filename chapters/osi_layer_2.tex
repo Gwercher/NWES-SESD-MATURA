@@ -72,20 +72,20 @@ Layer 2 Broadcast Adresse: FF:FF:FF:FF:FF:FF
 \subsection*{ARP (Address Resolution Protocol)}
 Nutzt ein Host um zu einer gegebenen IP-Adresse die passende MAC-Adresse zu finden
 
-\subsection*{ARP-Request (Broadcast)}
+\subsubsection*{ARP-Request (Broadcast)}
 Source MAC: eigene MAC-Adresse \\
 Destination MAC: FF-FF-FF-FF-FF-FF \\
 Type: 0x806
 Danach ARP-Header (IP, MAC, Protokoll)
 
-\subsection*{ARP-Reply}
+\subsubsection*{ARP-Reply}
 Unicast (auch als Broadcast möglich) \\
 Source MAC: eigene MAC-Adresse (gesucht) \\
 Destination MAC: MAC-Adresse (Anfrage) \\
 Type: 0x806 \\
 Danach ARP-Header
 
-\subsection*{ARP-Cache}
+\subsubsection*{ARP-Cache}
 Die Einträge werden im ARP-Cache gespeichert (ca 5 min) \\
 IP MAC Time
 

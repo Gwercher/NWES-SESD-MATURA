@@ -58,7 +58,7 @@ Bsp: 9600 8E1 \\
 \end{tabular}
 
 
-'a' ASCII, 97 $\rightarrow$ 011 0000 1 \\
+'a' ASCII, 97 $\rightarrow$ 01100001 \\
 
 \begin{tabular}{c|c|c|c}
 	0 & 01100001 & 1 & 1 \\
@@ -102,7 +102,7 @@ oder auch auf Nachkommastellen runden:
 	~~~~~ \= \texttt{Serial.print(1.23456, 4)} $\rightarrow$ 1.2345
 \end{tabbing}
 
-\texttt{Serial.println()} ... gleich wie \texttt{Serial.print()}, jedoch beginnt es mit ASCII 13 oder '\textbackslash r' (neue Zeile beginnen) und endet mit ASCII 10 oder '\textbackslash n' (Zeil beenden).
+\texttt{Serial.println()} ... gleich wie \texttt{Serial.print()}, jedoch beginnt es mit ASCII 13 oder '\textbackslash r' (neue Zeile beginnen) und endet mit ASCII 10 oder '\textbackslash n' (Zeile beenden).
 
 \texttt{Serial.read()} ... gleich wie Serial.available()
 
