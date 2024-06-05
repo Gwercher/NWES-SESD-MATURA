@@ -65,11 +65,46 @@ numbers = noendperiod
 
 \usepackage{enumitem}
 
-%-------------------------------------------------------------------------------------------%
-% BIBLIOGRAPHY
-%\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
-%\bibliography{bibliography/citations_gwercher}
-%\bibliography{bibliography/citations_egger}
+% definitions for syntax highlighting in listings environment
+% define custom colors for syntax highlighting in code listings
+\definecolor{lst_comments}{rgb}{0, 0.75, 0}
+\definecolor{lst_linenumbers}{rgb}{0.2, 0.2, 0.2}
+\definecolor{lst_keywords}{rgb}{0, 0, 0.75}
+\definecolor{lst_strings}{rgb}{0.75, 0, 0}
+\definecolor{lst_background}{rgb}{0.97, 0.97, 0.97}
+
+% define style for listings
+\lstdefinestyle{msqc_style}{
+	backgroundcolor=\color{lst_background},   
+	commentstyle=\color{lst_comments},
+	keywordstyle=\color{lst_keywords},
+	stringstyle=\color{lst_strings},
+	% style of the line numbers on the left side
+	numberstyle=\tiny\color{lst_linenumbers},
+	% use monospace font for code and set size to the size of footnotes
+	basicstyle=\footnotesize,
+	xleftmargin=2em,
+	% break long lines, if this happens it might be better to manually add a line break at an appropriate place
+	breaklines = true,
+	% place caption below the listing
+	captionpos = b,
+	% don't drop spaces to fix alignment and always convert tabs to spaces
+	keepspaces = true,
+	% place line numbers on the left side
+	numbers = left,
+	% distance between line numbers and listing
+	numbersep = 7pt,
+	% don't show special characters for spaces
+	showspaces = false,
+	% don't show special characters for spaces in strings
+	showstringspaces = false,
+	% don't show special characters for tabs
+	showtabs = false,
+	% set size of tab to 4 spaces
+	tabsize = 4
+}
+% set style for the document
+\lstset{style=msqc_style}
 
 %-------------------------------------------------------------------------------------------%
 % VARIABLES
@@ -185,8 +220,6 @@ numbers = noendperiod
 	
 	\include{chapters/modblock}
 	
-%	\include{chapters/template_info}
-	
 	
 %-------------------------------------------------------------------------------------------%
 % VERZEICHNISSE
@@ -198,7 +231,7 @@ numbers = noendperiod
 
 %	\listoftables	
 	
-	%\lstlistoflistings
+	\lstlistoflistings
 	
 	%\printbibliography
 

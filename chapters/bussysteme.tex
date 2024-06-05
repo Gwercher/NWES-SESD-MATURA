@@ -86,23 +86,23 @@ Der Arduino besitzt ein UART-Bauteil, welches für die aktuelle Kommunikation ge
 Beispiel mit Ausgabe: HELLO $\rightarrow$ 72 69 76 76 79 10
 
 \texttt{Serial.print()} ... gibt Daten im Serial Monitor aus
-\begin{tabbing}
-	z.B. \= \texttt{Serial.print(78)} $\rightarrow$ 78 \\
-	~~~~~ \= \texttt{Serial.print("Test")} $\rightarrow$ Test 
-\end{tabbing}
-Weiters kann man Zahlen in anderen Zahlensystemen umwandeln und ausgeben (BIN, OCT, DEC, HEX) 
-\begin{tabbing}
-	z.B. \= \texttt{Serial.print(78, BIN)} $\rightarrow$ 1001110 \\
-	~~~~~ \= \texttt{Serial.print(78, HEX)} $\rightarrow$ 4E 
-\end{tabbing}
-oder auch auf Nachkommastellen runden:
-\begin{tabbing}
-	z.B. \= \texttt{Serial.print(1.23456, 0)} $\rightarrow$ 1 \\
-	~~~~~ \= \texttt{Serial.print(1.23456, 2)} $\rightarrow$ 1.23 \\
-	~~~~~ \= \texttt{Serial.print(1.23456, 4)} $\rightarrow$ 1.2345
-\end{tabbing}
+%\begin{tabbing}
+%	z.B. \= \texttt{Serial.print(78)} $\rightarrow$ 78 \\
+%	~~~~~ \= \texttt{Serial.print("Test")} $\rightarrow$ Test 
+%\end{tabbing}
+%Weiters kann man Zahlen in anderen Zahlensystemen umwandeln und ausgeben (BIN, OCT, DEC, HEX) 
+%\begin{tabbing}
+%	z.B. \= \texttt{Serial.print(78, BIN)} $\rightarrow$ 1001110 \\
+%	~~~~~ \= \texttt{Serial.print(78, HEX)} $\rightarrow$ 4E 
+%\end{tabbing}
+%oder auch auf Nachkommastellen runden:
+%\begin{tabbing}
+%	z.B. \= \texttt{Serial.print(1.23456, 0)} $\rightarrow$ 1 \\
+%	~~~~~ \= \texttt{Serial.print(1.23456, 2)} $\rightarrow$ 1.23 \\
+%	~~~~~ \= \texttt{Serial.print(1.23456, 4)} $\rightarrow$ 1.2345
+%\end{tabbing}
 
-\texttt{Serial.println()} ... gleich wie \texttt{Serial.print()}, jedoch beginnt es mit ASCII 13 oder '\textbackslash r' (neue Zeile beginnen) und endet mit ASCII 10 oder '\textbackslash n' (Zeile beenden).
+%\texttt{Serial.println()} ... gleich wie \texttt{Serial.print()}, jedoch beginnt es mit ASCII 13 oder '\textbackslash r' (neue Zeile beginnen) und endet mit ASCII 10 oder '\textbackslash n' (Zeile beenden).
 
 \texttt{Serial.read()} ... gleich wie Serial.available()
 
@@ -110,11 +110,15 @@ oder auch auf Nachkommastellen runden:
 \begin{tabbing}
 	z.B. \= \texttt{Serial.write(72)} $\rightarrow$ H \\
 	~~~~~ \= \texttt{Serial.write(69)} $\rightarrow$ E \\
-	~~~~~ \= \texttt{Serial.write(76)} $\rightarrow$ L \\
-	~~~~~ \= \texttt{Serial.write(76)} $\rightarrow$ L \\
-	~~~~~ \= \texttt{Serial.write(79)} $\rightarrow$ O \\
-	~~~~~ \= \texttt{Serial.write(32)} $\rightarrow$ SPACE
+%	~~~~~ \= \texttt{Serial.write(76)} $\rightarrow$ L \\
+%	~~~~~ \= \texttt{Serial.write(76)} $\rightarrow$ L \\
+%	~~~~~ \= \texttt{Serial.write(79)} $\rightarrow$ O \\
+%	~~~~~ \= \texttt{Serial.write(32)} $\rightarrow$ SPACE
 \end{tabbing}
+
+\lstinputlisting[language=C++, caption=UART Sender]{code/uart_send.ino}
+
+\lstinputlisting[language=C++, caption=UART Receiver]{code/uart_rec.ino}
 
 \section{CAN-Bus (Controll Area Network)}
 Der CAN-Bus ist ein serieller Bus der speziell für die Automobilindustrie entwickelt wurde.
@@ -245,6 +249,14 @@ Der I2C-Bus ...
 	\texttt{Wire.available();} &  \\
 	\hline
 \end{tabular} 
+
+\lstinputlisting[language=C++, caption=I2C \texttt{\#}1 Master (Writer)]{code/1_master_writer.ino}
+
+\lstinputlisting[language=C++, caption=I2C \texttt{\#}1 Slave (Reciever)]{code/1_slave_receiver.ino}
+
+\lstinputlisting[language=C++, caption=I2C \texttt{\#}2 Master (Reader)]{code/2_master_reader.ino}
+
+\lstinputlisting[language=C++, caption=I2C \texttt{\#}2 Slave (Sender)]{code/2_slave_sender.ino}
 
 \iffalse
 	\subsection*{I2C-Display (OLED)}
